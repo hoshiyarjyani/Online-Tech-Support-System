@@ -22,12 +22,12 @@ public class HodLogin {
 		try {
 			HOD hod = dao.loginHodDAO(username, password);
 			System.out.println("Welcome "+ hod.getName());
-			System.out.println("======================================");
+			System.out.println("==================================");
 			
 		} catch (HODException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
-			System.out.println("===========================================");
+			System.out.println("======================================");
 			LoginHOD();
 		}
 	}
