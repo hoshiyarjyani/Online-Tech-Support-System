@@ -25,10 +25,53 @@ public class UiMain {
 
 		case 1:
 			System.out.println("HOD");
-			System.out.println("=============================");
+			System.out.println("================================");
 			HodLogin login = new HodLogin();
 			login.LoginHOD();
-          break;
+			while (true) {
+				System.out.println("Enter 1 : Register a new Engineer.");
+				System.out.println("Enter 2 : See the list of all Engineers.");
+				System.out.println("Enter 3 : Delete any Engineer.");
+				System.out.println("Enter 4 : View all Raised Complaints");
+				System.out.println("Enter 5 : Assign a Complaint To an Engineer.");
+				System.out.println("Enter 6 : Logout");
+
+				int hodChoice = sc.nextInt();
+				System.out.println("===================================");
+
+				if (hodChoice == 1) {
+					HodRegisterEngineerUI reg = new HodRegisterEngineerUI();
+					System.out.println("Register a new Engineer.");
+					System.out.println("=============================================");
+					reg.hodRegisterEngineer();
+				}
+
+				else if (hodChoice == 2) {
+
+				}
+
+				else if (hodChoice == 3) {
+
+				}
+
+				else if (hodChoice == 4) {
+
+				}
+
+				else if (hodChoice == 5) {
+
+				}
+
+				else if (hodChoice == 6) {
+					UiMain.main(args);
+				}
+
+				else {
+					System.out.println("Invalid choice. Please enter a correct choice.");
+					System.out.println("====================================================");
+
+				}
+			}
 
 		case 2:
 			while (true) {
@@ -43,7 +86,6 @@ public class UiMain {
 			System.out.println("System Engineer");
 			System.out.println("==================================================");
 
-			
 			System.out.println("=================================================");
 
 			while (true) {
