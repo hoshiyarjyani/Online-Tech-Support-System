@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.EngineerException;
 import com.exception.HODException;
@@ -67,6 +70,37 @@ public class HodDAOImpl implements HodDAO {
 		}
 		
 		return res;
+	}
+	
+	@Override
+	public List<Engineer> getEngineers() throws EngineerException, ClassNotFoundException {
+		List<Engineer> engineers = new ArrayList<>();
+		
+		try(Connection con = DBUtils.getConnectionToDatabase()) {
+			
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM engineer");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Engineer eng = new Engineer();
+				
+				eng.setEngId(rs.getInt("engId"));
+				eng.setName(rs.getString("name"));
+				eng.setUserName(rs.getString("username"));
+				eng.setPassword(rs.getString("password"));
+				eng.setType(rs.getString("type"));
+				eng.setLocation(rs.getString("location"));
+				
+				engineers.add(eng);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return engineers;
 	}
 
 
