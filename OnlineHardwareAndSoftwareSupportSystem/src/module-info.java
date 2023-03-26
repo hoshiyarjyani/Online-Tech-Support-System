@@ -6,4 +6,5 @@
  *
  */
 module OnlineHardwareAndSoftwareSupportSystem {
+	requires java.sql;
 }
