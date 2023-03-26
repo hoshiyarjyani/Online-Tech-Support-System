@@ -1,0 +1,125 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 200
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database Online-Hardware-Software-Support-System;
+
+mysql> use Online_Hardware_Software_Support_System;
+Database changed
+
+mysql> create table HOD (
+    -> HodId int auto_increment primary key,
+    -> name varchar(30) not null,
+    -> username varchar(30) not null,
+    -> password varchar(30) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc HOD;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| HodId    | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(30) | NO   |     | NULL    |                |
+| username | varchar(30) | NO   |     | NULL    |                |
+| password | varchar(30) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table complaints (
+    -> complaintId int not null,
+    -> empId int,
+    -> complaintType varchar(30),
+    -> engId int,
+    -> status varchar(20),
+    -> dateRaised date,
+    -> dateResolved date
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc complaints;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| complaintId   | int         | NO   |     | NULL    |       |
+| empId         | int         | YES  |     | NULL    |       |
+| complaintType | varchar(30) | YES  |     | NULL    |       |
+| engId         | int         | YES  |     | NULL    |       |
+| status        | varchar(20) | YES  |     | NULL    |       |
+| dateRaised    | date        | YES  |     | NULL    |       |
+| dateResolved  | date        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+mysql> create table Department (
+    -> deptid int primary key auto_increment,
+    -> dname varchar(30) unique not null,
+    -> location varchar(30) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Department;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| deptid   | int         | NO   | PRI | NULL    | auto_increment |
+| dname    | varchar(30) | NO   | UNI | NULL    |                |
+| location | varchar(30) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+
+mysql> create table Employee (
+    -> EmpId int primary key auto_increment,
+    -> deptid int,
+    -> FOREIGN KEY(deptId) references Department(deptId),
+    -> name varchar(30) not null,
+    -> username varchar(30) not null,
+    -> password varchar(30) not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Employee;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| EmpId    | int         | NO   | PRI | NULL    | auto_increment |
+| deptid   | int         | YES  | MUL | NULL    |                |
+| name     | varchar(30) | NO   |     | NULL    |                |
+| username | varchar(30) | NO   |     | NULL    |                |
+| password | varchar(30) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> create table Engineer (
+    -> EngId int primary key auto_increment,
+    -> name varchar(30) not null,
+    -> username varchar(30) not null,
+    -> password varchar(30) not null,
+    -> type varchar(30),
+    -> location varchar(30) not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Engineer;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| EngId    | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(30) | NO   |     | NULL    |                |
+| username | varchar(30) | NO   |     | NULL    |                |
+| password | varchar(30) | NO   |     | NULL    |                |
+| type     | varchar(30) | YES  |     | NULL    |                |
+| location | varchar(30) | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
