@@ -47,7 +47,10 @@ public class UiMain {
 				}
 
 				else if (hodChoice == 2) {
-
+					HodCheckEngineersUI checkEngineersList = new HodCheckEngineersUI();
+					System.out.println("Engineers List");
+					System.out.println("=================================");
+					checkEngineersList.hodCheckEngineers();
 				}
 
 				else if (hodChoice == 3) {
