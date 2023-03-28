@@ -102,7 +102,8 @@ public class UiMain {
 						System.out.println("\n========Select your Option========\n");
 						System.out.println("1. For Register a Complaint.");
 						System.out.println("2. Check Status of a Complaint.");
-						System.out.println("3. Check Complaint History.");
+						System.out.println("3. Check Complaint History by Employee.");
+						System.out.println("4. Change Your Password.");
 						System.out.println("5. Logout.");
 						
 						int option = sc.nextInt();
@@ -125,6 +126,13 @@ public class UiMain {
 							EmployeeComplaintHistory employeeHistory = new EmployeeComplaintHistory();
 							employeeHistory.CheckComplaintHistoryOfEmployee(LoggedinEmpId);
 							System.out.println("=============================================");
+						}else if(option==4) {
+							System.out.println("Change Password.");
+							System.out.println("=============================================");
+							EmployeeChangePassword employeePasswordChange = new EmployeeChangePassword();
+							employeePasswordChange.EmployeeChangePasswordUI();
+							System.out.println("=============================================");
+							
 						}else if(option==5) {
 							main(args);
 						}

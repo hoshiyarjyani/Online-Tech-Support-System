@@ -139,7 +139,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				complaindto.setStatus(rs.getString("status"));
 				complaindto.setDateRaised(rs.getDate("dateRaised"));
 			}else {
-				throw new ComplaintException("Complaint Not Assigned Yet. Please Check After Sometime.");
+				throw new ComplaintException("Complaint Not Assigned Yet or No Complaint Found In Record. Please Check After Sometime.");
 			}
 			
 		} catch (SQLException e) {
@@ -192,6 +192,40 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 		}
 		return list;
+	}
+    
+	@Override
+	public String ChangeEmployeePassword(String username, String oldPassword, String newPassword) throws EmployeeException, ClassNotFoundException {
+		String result = "Password Not Changed. Please Try Again.";
+		Connection con = null;
+		try{
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("UPDATE employee SET password = ? WHERE username = ? AND password = ?");
+			
+			ps.setString(1, newPassword);
+			ps.setString(2, username);
+			ps.setString(3, oldPassword);
+			
+			int count = ps.executeUpdate();
+			
+			if(count>0) {
+				result = "Congratulations! Your Password Changed Successfully. Your New Password is [ "+newPassword+" ]";
+			}else {
+				throw new EmployeeException("Wrong Credentials Entered. Please Try Again.");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new EmployeeException(e.getMessage());
+		}finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
     
 }
