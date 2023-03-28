@@ -198,4 +198,30 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 	
+	@Override
+	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId) throws EngineerException, ClassNotFoundException {
+		String result = "Complaint-Id Not Found in Database. Please Enter a Valid Complaint-Id.";
+		Connection con = null;
+		try{
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("UPDATE complaints SET engId = ?, status = 'Assigned' where complaintId = ?");
+			
+			ps.setInt(1, engineerId);
+			ps.setInt(2, complaintId);
+			
+			int count = ps.executeUpdate();
+			if(count>0) {
+				result = "Complaint with ID " + complaintId +" Assigned to Engineer who's ID is " + engineerId;
+			}else {
+				throw new EngineerException("Engineer or Complaint Not Found In Records.");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new EngineerException(e.getMessage());
+		}
+		
+		return result;
+	}
+	
 }
