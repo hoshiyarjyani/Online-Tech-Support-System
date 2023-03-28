@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dto.Complaints;
 import com.dto.Engineer;
 import com.dto.HOD;
+import com.exception.ComplaintException;
 import com.exception.EngineerException;
 import com.exception.HODException;
 import com.exception.NoRecordFoundException;
@@ -156,4 +158,44 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
+	
+	@Override
+	public List<Complaints> CheckComplaintsByHodDAO() throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
+		List<Complaints> list = new ArrayList<>();
+		Connection con = null;
+		try{
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM complaints WHERE status = 'Raised'");
+			
+			ResultSet rs = ps.executeQuery();
+			if (DBUtils.checkResultSet(rs)) {
+				throw new NoRecordFoundException("No Complaint found");
+			}
+			while(rs.next()) {
+				Complaints complaint = new Complaints();
+				
+				complaint.setComplaintId(rs.getInt("complaintId"));
+				complaint.setEmpId(rs.getInt("empId"));
+				complaint.setComplaintType(rs.getString("complaintType"));
+				complaint.setEngId(rs.getInt("engId"));
+				complaint.setDateRaised(rs.getDate("dateRaised"));
+				complaint.setDateResolved(rs.getDate("dateResolved"));
+				complaint.setStatus(rs.getString("status"));
+				
+				list.add(complaint);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
 }
