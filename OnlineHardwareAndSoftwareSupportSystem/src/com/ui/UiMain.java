@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 import com.dao.HodDAO;
 import com.dao.HodDAOImpl;
+import com.exception.NoRecordFoundException;
 
 public class UiMain {
-	public static void main(String[] args) throws ClassNotFoundException {
+	public static void main(String[] args) throws ClassNotFoundException, NoRecordFoundException {
 		System.out.println("Welcome to Online Hardware and Software Support System. ");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		System.out.println("========Select your Option========\n");
@@ -54,7 +55,9 @@ public class UiMain {
 				}
 
 				else if (hodChoice == 3) {
-
+					HodDeleteEngineer delete = new HodDeleteEngineer();
+					delete.hodDeleteEngineer();
+					System.out.println("====================================");
 				}
 
 				else if (hodChoice == 4) {

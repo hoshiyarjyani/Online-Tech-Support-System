@@ -6,10 +6,11 @@ import com.dao.HodDAO;
 import com.dao.HodDAOImpl;
 import com.dto.Engineer;
 import com.exception.EngineerException;
+import com.exception.NoRecordFoundException;
 
 public class HodCheckEngineersUI {
 
-	public void hodCheckEngineers() throws ClassNotFoundException {
+	public void hodCheckEngineers() throws ClassNotFoundException, NoRecordFoundException {
 		HodDAO dao = new HodDAOImpl();
 		
 		try {
