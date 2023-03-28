@@ -3,8 +3,6 @@ package com.ui;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
-import com.dao.HodDAO;
-import com.dao.HodDAOImpl;
 import com.exception.NoRecordFoundException;
 
 public class UiMain {
@@ -91,11 +89,19 @@ public class UiMain {
 				System.out.println("Employee Section");
 				System.out.println("================================\n");
 				System.out.println("========Select your Option========\n");
+				System.out.println("1. Login Your Account if you are already Regitered Employee");
 				System.out.println("2. Register Yourself If you are a New Employee.");
 				System.out.println("3. Stop/Exit Application.");
                 
 				int EmpChoice = sc.nextInt();
-				if(EmpChoice==2) {
+				if(EmpChoice==1){
+					EmployeeLogIn employeeLogin = new EmployeeLogIn();
+					int empIdLoggedin = employeeLogin.loginEmployee();
+                     System.out.println(empIdLoggedin+" this is id");
+					
+				}
+				
+				else if(EmpChoice==2) {
 					EmployeeRegistration employeeRegister = new EmployeeRegistration();
 					employeeRegister.RegisterNewEmployee();
 					System.out.println("============================================");
