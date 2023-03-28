@@ -69,7 +69,9 @@ public class UiMain {
 				}
 
 				else if (hodChoice == 5) {
-
+					HODAssignComplaintToEngineer assignComplain = new HODAssignComplaintToEngineer();
+					assignComplain.AssignComplaintToEngineer();
+					System.out.println("=====================================");
 				}
 
 				else if (hodChoice == 6) {

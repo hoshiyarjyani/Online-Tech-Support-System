@@ -17,4 +17,5 @@ public interface HodDAO {
 	public List<Engineer> getEngineers() throws EngineerException, ClassNotFoundException, NoRecordFoundException;
 	public String DeleteEngineerByHodDAO(int engId) throws EngineerException, ClassNotFoundException;
 	public List<Complaints> CheckComplaintsByHodDAO() throws ComplaintException, ClassNotFoundException, NoRecordFoundException;
+	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId) throws EngineerException, ClassNotFoundException;
 }
