@@ -20,4 +20,6 @@ public interface EmployeeDAO {
 
 	public List<Complaints> CheckComplaintHistoryByEmployee(int empId) throws ComplaintException, ClassNotFoundException;
 
+	public String ChangeEmployeePassword(String username, String oldPassword, String newPassword) throws EmployeeException, ClassNotFoundException;
+
 }
