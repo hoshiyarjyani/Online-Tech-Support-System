@@ -3,6 +3,7 @@ package com.dao;
 import java.sql.SQLException;
 
 import com.dto.Employee;
+import com.dto.EngineerComplaintsDTO;
 import com.exception.ComplaintException;
 import com.exception.EmployeeException;
 
@@ -12,5 +13,7 @@ public interface EmployeeDAO {
 	public Employee LoginEmployee(String username, String password) throws EmployeeException, ClassNotFoundException;
 
 	public int RaiseComplaintByTheEmployee(int empId, String complaintType) throws ComplaintException, ClassNotFoundException;
+
+	public EngineerComplaintsDTO CheckComplaintStatusByEmployee(int complaintId) throws ComplaintException, ClassNotFoundException;
 
 }
