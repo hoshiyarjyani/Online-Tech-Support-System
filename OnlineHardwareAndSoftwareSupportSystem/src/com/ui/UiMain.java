@@ -102,6 +102,7 @@ public class UiMain {
 						System.out.println("\n========Select your Option========\n");
 						System.out.println("1. For Register a Complaint.");
 						System.out.println("2. Check Status of a Complaint.");
+						System.out.println("3. Check Complaint History.");
 						System.out.println("5. Logout.");
 						
 						int option = sc.nextInt();
@@ -109,7 +110,7 @@ public class UiMain {
 						System.out.println("Employee");
 						System.out.println("===========================================");
 						if(option==1) {
-							System.out.println("Raise Complaint.");
+							System.out.println("Raise Complaint");
 							System.out.println("=======================================");
 							EmployeeRaiseComplaint empComplaintTicket = new EmployeeRaiseComplaint();
 							empComplaintTicket.RaiseComplaintByEmployee(LoggedinEmpId);
@@ -118,6 +119,12 @@ public class UiMain {
 							EmployeeCheckComplaintStatus employeeCheckStatus = new EmployeeCheckComplaintStatus();
 							employeeCheckStatus.CheckComplaintStatusByEmployee();
 							System.out.println("==========================================");
+						}else if(option==3) {
+							System.out.println("Complaint History");
+							System.out.println("============================================");
+							EmployeeComplaintHistory employeeHistory = new EmployeeComplaintHistory();
+							employeeHistory.CheckComplaintHistoryOfEmployee(LoggedinEmpId);
+							System.out.println("=============================================");
 						}else if(option==5) {
 							main(args);
 						}
