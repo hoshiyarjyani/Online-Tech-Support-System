@@ -61,7 +61,11 @@ public class UiMain {
 				}
 
 				else if (hodChoice == 4) {
-
+					HodCheckComplaints checkComplaints = new HodCheckComplaints();
+					System.out.println("All Complaints");
+					System.out.println("=====================================");
+					checkComplaints.CheckAllComplaintsByHOD();
+					System.out.println("=====================================");
 				}
 
 				else if (hodChoice == 5) {
