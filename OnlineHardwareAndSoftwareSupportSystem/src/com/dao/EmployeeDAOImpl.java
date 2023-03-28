@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.dto.Complaints;
 import com.dto.Employee;
 import com.dto.EngineerComplaintsDTO;
 import com.exception.ComplaintException;
@@ -153,5 +156,42 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return complaindto;
 	}
     
+    
+    @Override
+	public List<Complaints> CheckComplaintHistoryByEmployee(int empId) throws ComplaintException, ClassNotFoundException {
+		List<Complaints> list = new ArrayList<>();
+		Connection con = null;
+		try{
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM complaints WHERE empId = ?");
+			
+			ps.setInt(1, empId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Complaints complaint = new Complaints();
+				complaint.setComplaintId(rs.getInt("complaintId"));
+				complaint.setEmpId(rs.getInt("empId"));
+				complaint.setComplaintType(rs.getString("complaintType"));
+				complaint.setEngId(rs.getInt("engId"));
+				complaint.setStatus(rs.getString("status"));
+				complaint.setDateRaised(rs.getDate("dateRaised"));
+				complaint.setDateResolved(rs.getDate("dateResolved"));
+				
+				list.add(complaint);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
     
 }
