@@ -101,6 +101,7 @@ public class UiMain {
 					while(true) {
 						System.out.println("\n========Select your Option========\n");
 						System.out.println("1. For Register a Complaint.");
+						System.out.println("2. Check Status of a Complaint.");
 						System.out.println("5. Logout.");
 						
 						int option = sc.nextInt();
@@ -113,6 +114,10 @@ public class UiMain {
 							EmployeeRaiseComplaint empComplaintTicket = new EmployeeRaiseComplaint();
 							empComplaintTicket.RaiseComplaintByEmployee(LoggedinEmpId);
 							System.out.println("========================================");
+						}else if(option==2) {
+							EmployeeCheckComplaintStatus employeeCheckStatus = new EmployeeCheckComplaintStatus();
+							employeeCheckStatus.CheckComplaintStatusByEmployee();
+							System.out.println("==========================================");
 						}else if(option==5) {
 							main(args);
 						}

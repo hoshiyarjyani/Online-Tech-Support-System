@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import com.dto.Employee;
+import com.dto.EngineerComplaintsDTO;
 import com.exception.ComplaintException;
 import com.exception.EmployeeException;
 
@@ -113,6 +114,43 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			}
 		}
 		return complaintId;
+	}
+    
+    @Override
+	public EngineerComplaintsDTO CheckComplaintStatusByEmployee(int complaintId) throws ComplaintException, ClassNotFoundException {
+		
+		EngineerComplaintsDTO complaindto = new EngineerComplaintsDTO();
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("SELECT c.complaintId, c.engId, e.name,c.complaintType, c.status, c.dateRaised FROM complaints c INNER JOIN engineer e ON c.engId = e.engId WHERE complaintId = ?");
+			ps.setInt(1, complaintId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				complaindto.setComplaintId(rs.getInt("complaintId"));
+				complaindto.setComplaintType(rs.getString("complaintType"));
+				complaindto.setEngId(rs.getInt("engId"));
+				complaindto.setName(rs.getString("name"));
+				complaindto.setStatus(rs.getString("status"));
+				complaindto.setDateRaised(rs.getDate("dateRaised"));
+			}else {
+				throw new ComplaintException("Complaint Not Assigned Yet. Please Check After Sometime.");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new ComplaintException(e.getMessage());
+		}finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return complaindto;
 	}
     
     
