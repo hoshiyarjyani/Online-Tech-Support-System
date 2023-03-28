@@ -96,8 +96,27 @@ public class UiMain {
 				int EmpChoice = sc.nextInt();
 				if(EmpChoice==1){
 					EmployeeLogIn employeeLogin = new EmployeeLogIn();
-					int empIdLoggedin = employeeLogin.loginEmployee();
-                     System.out.println(empIdLoggedin+" this is id");
+					int LoggedinEmpId = employeeLogin.loginEmployee();
+                    
+					while(true) {
+						System.out.println("\n========Select your Option========\n");
+						System.out.println("1. For Register a Complaint.");
+						System.out.println("5. Logout.");
+						
+						int option = sc.nextInt();
+						System.out.println("==========================================");
+						System.out.println("Employee");
+						System.out.println("===========================================");
+						if(option==1) {
+							System.out.println("Raise Complaint.");
+							System.out.println("=======================================");
+							EmployeeRaiseComplaint empComplaintTicket = new EmployeeRaiseComplaint();
+							empComplaintTicket.RaiseComplaintByEmployee(LoggedinEmpId);
+							System.out.println("========================================");
+						}else if(option==5) {
+							main(args);
+						}
+					}
 					
 				}
 				
