@@ -1,11 +1,14 @@
 package com.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import com.dto.Employee;
+import com.exception.ComplaintException;
 import com.exception.EmployeeException;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -75,5 +78,42 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 		return employee;
 	}
+    
+    @Override
+	public int RaiseComplaintByTheEmployee(int empId, String complaintType) throws ComplaintException, ClassNotFoundException {
+		int complaintId = 0;
+		Connection con = null;
+		try{
+			con = DBUtils.getConnectionToDatabase();
+ PreparedStatement ps = con.prepareStatement("INSERT INTO complaints (complaintId,empId,complaintType,status,dateRaised) values(?,?,?,?,?)");
+			
+			complaintId = (int) (Math.random()*10000);
+			LocalDate dateRaised = LocalDate.now();
+			ps.setInt(1, complaintId);
+			ps.setInt(2, empId);
+			ps.setString(3, complaintType);
+			ps.setString(4, "Raised");
+			ps.setDate(5, Date.valueOf(dateRaised));
+			
+			int num = ps.executeUpdate();
+			
+			if(num>0) {
+				System.out.println("Complaint Raised Successfully\nYour Complaint No. is "+complaintId);
+			}else {
+				throw new ComplaintException("Oops! Complaint could Not be Raised. Please Try Again.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new ComplaintException(e.getMessage());
+		}finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return complaintId;
+	}
+    
     
 }
