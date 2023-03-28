@@ -1,5 +1,6 @@
 package com.ui;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
 import com.dao.HodDAO;
@@ -7,14 +8,14 @@ import com.dao.HodDAOImpl;
 import com.exception.NoRecordFoundException;
 
 public class UiMain {
-	public static void main(String[] args) throws ClassNotFoundException, NoRecordFoundException {
+	public static void main(String[] args) throws ClassNotFoundException, NoRecordFoundException, SQLIntegrityConstraintViolationException {
 		System.out.println("Welcome to Online Hardware and Software Support System. ");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		System.out.println("========Select your Option========\n");
-		System.out.println("Press 1 if you are the HOD.");
-		System.out.println("Press 2 if you are an Employee.");
-		System.out.println("Press 3 if you are an Engineer.");
-		System.out.println("Press 4 if you want Stop/Exit Application");
+		System.out.println("Enter 1 If you are the HOD.");
+		System.out.println("Enter 2 If you are an Employee.");
+		System.out.println("Enter 3 If you are an Engineer.");
+		System.out.println("Enter 4 Stop/Exit Application");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -25,7 +26,7 @@ public class UiMain {
 		switch (choice) {
 
 		case 1:
-			System.out.println("HOD");
+			System.out.println("HOD Section");
 			System.out.println("================================");
 			HodLogin login = new HodLogin();
 			login.LoginHOD();
@@ -87,12 +88,24 @@ public class UiMain {
 
 		case 2:
 			while (true) {
-				System.out.println("Employee.");
-				System.out.println("==================================================");
-				System.out.println("Enter 1 to login if you are already registered.");
-				System.out.println("Enter 2 to register to the system if you are a new employee.");
-				System.out.println("Enter 3 to exit.");
-
+				System.out.println("Employee Section");
+				System.out.println("================================\n");
+				System.out.println("========Select your Option========\n");
+				System.out.println("2. Register Yourself If you are a New Employee.");
+				System.out.println("3. Stop/Exit Application.");
+                
+				int EmpChoice = sc.nextInt();
+				if(EmpChoice==2) {
+					EmployeeRegistration employeeRegister = new EmployeeRegistration();
+					employeeRegister.RegisterNewEmployee();
+					System.out.println("============================================");
+				}else if(EmpChoice==3){
+					System.out.println("*****************************************");
+					System.out.println("Thank you.");
+					System.exit(0);
+				}else {
+					System.out.println("Invalid Selection. Please Try Again.");
+				}
 			}
 		case 3:
 			System.out.println("System Engineer");
