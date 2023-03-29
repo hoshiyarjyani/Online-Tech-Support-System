@@ -13,10 +13,10 @@ public class UiMain {
 		System.out.println("Welcome to Online Hardware and Software Support System. ");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		System.out.println("========Select your Option========\n");
-		System.out.println("Enter 1 If you are the HOD.");
-		System.out.println("Enter 2 If you are an Employee.");
-		System.out.println("Enter 3 If you are an Engineer.");
-		System.out.println("Enter 4 Stop/Exit Application");
+		System.out.println("1.  If you are the HOD.");
+		System.out.println("2.  If you are an Employee.");
+		System.out.println("3.  If you are an Engineer.");
+		System.out.println("4.  Stop/Exit Application");
 
 		Scanner sc = new Scanner(System.in);
 
@@ -32,83 +32,94 @@ public class UiMain {
 			HodLogin login = new HodLogin();
 			login.LoginHOD();
 			while (true) {
-				System.out.println("Enter 1 : Register a new Engineer.");
-				System.out.println("Enter 2 : See the list of all Engineers.");
-				System.out.println("Enter 3 : Delete Engineer From Database.");
+				System.out.println("\n========Select your Option========\n");
+				System.out.println("1.  View all Raised Complaints");
+				System.out.println("2.  Assign a Complaint To an Engineer.");
 				
-				System.out.println("Enter 4 : View all Raised Complaints");
-				System.out.println("Enter 5 : Assign a Complaint To an Engineer.");
+				System.out.println("\nEngineer Section");
+				System.out.println("3.  Register a new Engineer.");
+				System.out.println("4.  View Engineers List.");
+				System.out.println("5.  Delete Engineer From Database.");
 				
-				System.out.println("Enter 6 : Add Department In DataBase");
-				System.out.println("Enter 9 : Delete Department From DataBase");
-				System.out.println("Enter 7 : Register a New Employee");
-				System.out.println("Enter 10: Delete Employee From Database");
-				System.out.println("Enter 11: See the List of All Department");
-				System.out.println("Enter 12: See the List of All Employee");
-				System.out.println("Enter 8 : Logout");
+				
+				System.out.println("\nDepartment Section");
+				System.out.println("6.  Add Department In DataBase");
+				System.out.println("7.  View Department List");
+				System.out.println("8.  Delete Department From DataBase");
+				
+				System.out.println("\nEmployee Section");
+				System.out.println("9.  Register a New Employee");
+				System.out.println("10. View Employee List.");
+				System.out.println("11. Delete Employee From Database");
+				
+				System.out.println("\n12.  Logout");
+				
 
 				int hodChoice = sc.nextInt();
 				System.out.println("===================================");
 
+				
 				if (hodChoice == 1) {
+					HodCheckComplaints checkComplaints = new HodCheckComplaints();
+					System.out.println("All Complaints");
+					System.out.println("=====================================");
+					checkComplaints.CheckAllComplaintsByHOD();
+					System.out.println("=====================================");
+				} else if (hodChoice == 2) {
+					HODAssignComplaintToEngineer assignComplain = new HODAssignComplaintToEngineer();
+					assignComplain.AssignComplaintToEngineer();
+					System.out.println("=====================================");
+				}
+				else if (hodChoice == 3) {
 					HodRegisterEngineerUI reg = new HodRegisterEngineerUI();
 					System.out.println("Register a new Engineer.");
 					System.out.println("=============================================");
 					reg.hodRegisterEngineer();
 				}
 
-				else if (hodChoice == 2) {
+				else if (hodChoice == 4) {
 					HodCheckEngineersUI checkEngineersList = new HodCheckEngineersUI();
 					System.out.println("Engineers List");
 					System.out.println("=================================");
 					checkEngineersList.hodCheckEngineers();
 				}
 
-				else if (hodChoice == 3) {
+				else if (hodChoice == 5) {
 					HodDeleteEngineer delete = new HodDeleteEngineer();
 					delete.hodDeleteEngineer();
 					System.out.println("====================================");
 				}
 
-				else if (hodChoice == 4) {
-					HodCheckComplaints checkComplaints = new HodCheckComplaints();
-					System.out.println("All Complaints");
-					System.out.println("=====================================");
-					checkComplaints.CheckAllComplaintsByHOD();
-					System.out.println("=====================================");
-				} else if (hodChoice == 5) {
-					HODAssignComplaintToEngineer assignComplain = new HODAssignComplaintToEngineer();
-					assignComplain.AssignComplaintToEngineer();
-					System.out.println("=====================================");
-				}else if (hodChoice == 6) {
+				else if (hodChoice == 6) {
 					HODAddNewDepartment addDepartment = new HODAddNewDepartment();
 					addDepartment.HodRegisterDepartment();
-					System.out.println("=====================================");
-				} else if (hodChoice == 7) {
-					EmployeeRegistration employeeRegister = new EmployeeRegistration();
-					employeeRegister.RegisterNewEmployee();
-					System.out.println("============================================");
-				}else if (hodChoice == 9) {
-					HodDeleteDepartment delete = new HodDeleteDepartment();
-					delete.hodDeleteDepartment();
-					System.out.println("====================================");
-				}else if (hodChoice == 10) {
-					HodDeleteEmployee delete = new HodDeleteEmployee();
-					delete.HODDeleteEmployee();
-					System.out.println("====================================");
-				}else if (hodChoice == 11) {
+				}else if (hodChoice == 7) {
 					HodCheckDepartment checkDepartmentList = new HodCheckDepartment();
 					System.out.println("Department List");
 					System.out.println("=================================");
 					checkDepartmentList.CheckDepartmentByHOD();
 					System.out.println("=================================");
-				}else if (hodChoice == 12) {
+				}else if (hodChoice == 8) {
+					HodDeleteDepartment delete = new HodDeleteDepartment();
+					delete.hodDeleteDepartment();
+					System.out.println("====================================");
+				}
+				else if (hodChoice == 9) {
+					EmployeeRegistration employeeRegister = new EmployeeRegistration();
+					employeeRegister.RegisterNewEmployee();
+					System.out.println("============================================");
+				}else if (hodChoice == 10) {
 					HodCheckEmployee checkEmployeeList = new HodCheckEmployee();
-					System.out.println("Department List");
+					System.out.println("Employee List");
 					System.out.println("=================================");
 					checkEmployeeList.CheckEmployeeByHOD();
 					System.out.println("=================================");
-				} else if (hodChoice == 8) {
+				} else if (hodChoice == 11) {
+					HodDeleteEmployee delete = new HodDeleteEmployee();
+					delete.HODDeleteEmployee();
+					System.out.println("====================================");
+				}
+				else if (hodChoice == 12) {
 					UiMain.main(args);
 				} else {
 					System.out.println("Invalid choice. Please enter a correct choice.");
@@ -121,8 +132,8 @@ public class UiMain {
 				System.out.println("Employee Section");
 				System.out.println("================================\n");
 				System.out.println("========Select your Option========\n");
-				System.out.println("1. Login Your Employee Account");
-				System.out.println("2. Stop/Exit Application.");
+				System.out.println("1.  Login Your Employee Account");
+				System.out.println("2.  Stop/Exit Application.");
 
 				int EmpChoice = sc.nextInt();
 				if (EmpChoice == 1) {
@@ -131,11 +142,11 @@ public class UiMain {
 
 					while (true) {
 						System.out.println("\n========Select your Option========\n");
-						System.out.println("1. For Register a Complaint.");
-						System.out.println("2. Check Status of a Complaint.");
-						System.out.println("3. Check Complaint History by Employee.");
-						System.out.println("4. Change Your Password.");
-						System.out.println("5. Logout.");
+						System.out.println("1.  For Register a Complaint.");
+						System.out.println("2.  Check Status of a Complaint.");
+						System.out.println("3.  Check Complaint History by Employee.");
+						System.out.println("4.  Change Your Password.");
+						System.out.println("5.  Logout.");
 
 						int option = sc.nextInt();
 						System.out.println("==========================================");
@@ -189,11 +200,11 @@ public class UiMain {
 
 			while (true) {
 				System.out.println("\n========Select your Option========\n");
-				System.out.println("1. Check Complaints Assigned.");
-				System.out.println("2. Update complaint Status.");
-				System.out.println("3. View List of All the Complaints Attended.");
-				System.out.println("4. Change Your Password.");
-				System.out.println("5. Logout/Exit.");
+				System.out.println("1.  Check Complaints Assigned.");
+				System.out.println("2.  Update complaint Status.");
+				System.out.println("3.  View List of All the Complaints Attended.");
+				System.out.println("4.  Change Your Password.");
+				System.out.println("5.  Logout/Exit.");
 
 				int engChoice = sc.nextInt();
 				if (engChoice == 1) {
