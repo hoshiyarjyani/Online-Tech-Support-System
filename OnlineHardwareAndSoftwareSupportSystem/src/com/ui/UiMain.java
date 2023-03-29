@@ -44,6 +44,7 @@ public class UiMain {
 				System.out.println("Enter 7 : Register a New Employee");
 				System.out.println("Enter 10: Delete Employee From Database");
 				System.out.println("Enter 11: See the List of All Department");
+				System.out.println("Enter 12: See the List of All Employee");
 				System.out.println("Enter 8 : Logout");
 
 				int hodChoice = sc.nextInt();
@@ -100,6 +101,12 @@ public class UiMain {
 					System.out.println("Department List");
 					System.out.println("=================================");
 					checkDepartmentList.CheckDepartmentByHOD();
+					System.out.println("=================================");
+				}else if (hodChoice == 12) {
+					HodCheckEmployee checkEmployeeList = new HodCheckEmployee();
+					System.out.println("Department List");
+					System.out.println("=================================");
+					checkEmployeeList.CheckEmployeeByHOD();
 					System.out.println("=================================");
 				} else if (hodChoice == 8) {
 					UiMain.main(args);
