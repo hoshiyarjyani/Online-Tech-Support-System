@@ -256,4 +256,37 @@ public class HodDAOImpl implements HodDAO {
 		}
 		return result;
 	}
+	
+	
+	@Override
+	public String DeleteDepartmentByHOD(String dname) throws DepartmentException, ClassNotFoundException {
+		Connection con = null;
+		String result = "Department not present in Record who's Name is " + dname;
+
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("DELETE FROM department WHERE dname = ?");
+
+			ps.setString(1, dname);
+
+			int x = ps.executeUpdate();
+
+			if (x > 0) {
+				result = "Department " + dname + " is Sucessfully Deleted from Database.";
+			} else {
+				throw new DepartmentException("Department " + dname + " is not Found in Records.");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DepartmentException(e.getMessage());
+		} finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

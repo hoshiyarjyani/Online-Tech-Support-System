@@ -20,4 +20,5 @@ public interface HodDAO {
 	public List<Complaints> CheckComplaintsByHodDAO() throws ComplaintException, ClassNotFoundException, NoRecordFoundException;
 	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId) throws EngineerException, ClassNotFoundException;
 	public String RegisterDepartment(String dname, String location) throws ClassNotFoundException, DepartmentException;
+	public String DeleteDepartmentByHOD(String dname) throws DepartmentException, ClassNotFoundException;
 }

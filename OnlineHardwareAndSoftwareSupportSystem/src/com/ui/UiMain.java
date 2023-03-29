@@ -33,12 +33,13 @@ public class UiMain {
 			while (true) {
 				System.out.println("Enter 1 : Register a new Engineer.");
 				System.out.println("Enter 2 : See the list of all Engineers.");
-				System.out.println("Enter 3 : Delete any Engineer.");
+				System.out.println("Enter 3 : Delete Engineer From Database.");
 				
 				System.out.println("Enter 4 : View all Raised Complaints");
 				System.out.println("Enter 5 : Assign a Complaint To an Engineer.");
 				
 				System.out.println("Enter 6 : Add Department In DataBase");
+				System.out.println("Enter 9 : Delete Department From DataBase");
 				System.out.println("Enter 7 : Register a New Employee");
 				System.out.println("Enter 8 : Logout");
 
@@ -85,6 +86,10 @@ public class UiMain {
 					System.out.println("============================================");
 				} else if (hodChoice == 8) {
 					UiMain.main(args);
+				}else if (hodChoice == 9) {
+					HodDeleteDepartment delete = new HodDeleteDepartment();
+					delete.hodDeleteDepartment();
+					System.out.println("====================================");
 				} else {
 					System.out.println("Invalid choice. Please enter a correct choice.");
 					System.out.println("====================================================");
