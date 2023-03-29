@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.dto.Complaints;
 import com.dto.Department;
+import com.dto.Employee;
 import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.ComplaintException;
@@ -358,4 +359,42 @@ public class HodDAOImpl implements HodDAO {
 
 		return list;
 	}
+
+	@Override
+	public List<Employee> CheckEmployeeByHodDAO() throws ClassNotFoundException, NoRecordFoundException {
+		List<Employee> list = new ArrayList<>();
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM employee");
+
+			ResultSet rs = ps.executeQuery();
+			if (DBUtils.checkResultSet(rs)) {
+				throw new NoRecordFoundException("No Employee found");
+			}
+
+			while (rs.next()) {
+				Employee employee = new Employee();
+				employee.setEmpId(rs.getInt("EmpId"));
+				employee.setDeptid(rs.getInt("deptid"));
+				employee.setName(rs.getString("name"));
+				employee.setUserName(rs.getString("username"));
+				employee.setPassword(rs.getString("password"));
+
+				list.add(employee);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
 }
