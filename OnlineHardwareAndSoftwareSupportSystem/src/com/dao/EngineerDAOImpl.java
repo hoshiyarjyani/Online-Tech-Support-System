@@ -87,7 +87,8 @@ public class EngineerDAOImpl implements EngineerDAO {
 	}
 
 	@Override
-	public String UpdateComplaintStatusByEngineer(int complaintId, String newStatus, int engID) throws ComplaintException, ClassNotFoundException {
+	public String UpdateComplaintStatusByEngineer(int complaintId, String newStatus, int engID)
+			throws ComplaintException, ClassNotFoundException {
 		String result = "Oops! Not Found Any Complaints. Please Check Complaint-ID and Try Again.";
 		Connection con = null;
 		try {
@@ -95,15 +96,15 @@ public class EngineerDAOImpl implements EngineerDAO {
 			int count = 0;
 
 			if (newStatus.equals("Resolved")) {
-				PreparedStatement ps = con
-						.prepareStatement("UPDATE complaints SET status = ?, dateResolved = ? WHERE complaintId = ? AND engID = ?");
+				PreparedStatement ps = con.prepareStatement(
+						"UPDATE complaints SET status = ?, dateResolved = ? WHERE complaintId = ? AND engID = ?");
 
 				LocalDate dateResolved = LocalDate.now();
 
 				ps.setString(1, newStatus);
 				ps.setDate(2, Date.valueOf(dateResolved));
 				ps.setInt(3, complaintId);
-                ps.setInt(4,engID);
+				ps.setInt(4, engID);
 				count = ps.executeUpdate();
 
 			} else {
@@ -112,7 +113,7 @@ public class EngineerDAOImpl implements EngineerDAO {
 
 				ps.setString(1, newStatus);
 				ps.setInt(2, complaintId);
-				ps.setInt(3,engID);
+				ps.setInt(3, engID);
 				count = ps.executeUpdate();
 			}
 
@@ -136,25 +137,27 @@ public class EngineerDAOImpl implements EngineerDAO {
 
 		return result;
 	}
+
 	@Override
-	public List<Complaints> CheckComplaintsAttendedByEngineer(int engId) throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
+	public List<Complaints> CheckComplaintsAttendedByEngineer(int engId)
+			throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
 		List<Complaints> list = new ArrayList<>();
-		
+
 		Connection con = null;
 		try {
 			con = DBUtils.getConnectionToDatabase();
-			
+
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM complaints WHERE engId = ?");
-			
+
 			ps.setInt(1, engId);
-			
+
 			ResultSet rs = ps.executeQuery();
 			if (DBUtils.checkResultSet(rs)) {
 				throw new NoRecordFoundException("No Complaints Found");
 			}
-			while(rs.next()) {
+			while (rs.next()) {
 				Complaints complaint = new Complaints();
-				
+
 				complaint.setComplaintId(rs.getInt("complaintId"));
 				complaint.setEmpId(rs.getInt("empId"));
 				complaint.setComplaintType(rs.getString("complaintType"));
@@ -162,12 +165,49 @@ public class EngineerDAOImpl implements EngineerDAO {
 				complaint.setStatus(rs.getString("status"));
 				complaint.setDateRaised(rs.getDate("dateRaised"));
 				complaint.setDateResolved(rs.getDate("dateResolved"));
-				
+
 				list.add(complaint);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
+	@Override
+	public String ChangeEngineerNewPassword(String userName, String oldPassword, String newPassword)
+			throws EngineerException, ClassNotFoundException {
+		String result = "Password Not Changed. Please Try Again.";
+
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con
+					.prepareStatement("UPDATE engineer SET password = ? WHERE username = ? AND password = ?");
+
+			ps.setString(1, newPassword);
+			ps.setString(2, userName);
+			ps.setString(3, oldPassword);
+
+			int count = ps.executeUpdate();
+
+			if (count > 0) {
+				result = "Congratulations! Password Changed Successfully. Your New Password is " + newPassword;
+			} else {
+				throw new EngineerException("Wrong Credantials. Please TRY Again.");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new EngineerException(e.getMessage());
 		}finally {
 			try {
 				DBUtils.closeConnection(con);
@@ -175,7 +215,7 @@ public class EngineerDAOImpl implements EngineerDAO {
 				e.printStackTrace();
 			}
 		}
-		
-		return list;
+
+		return result;
 	}
 }

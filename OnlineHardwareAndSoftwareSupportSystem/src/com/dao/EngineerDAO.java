@@ -19,5 +19,7 @@ public interface EngineerDAO {
 
 	public List<Complaints> CheckComplaintsAttendedByEngineer(int engId) throws ComplaintException, ClassNotFoundException, NoRecordFoundException;
 
+	public String ChangeEngineerNewPassword(String userName, String oldPassword, String newPassword) throws EngineerException, ClassNotFoundException;
+
 
 }
