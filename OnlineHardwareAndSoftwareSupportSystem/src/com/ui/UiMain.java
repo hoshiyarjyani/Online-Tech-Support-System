@@ -166,6 +166,7 @@ public class UiMain {
 				System.out.println("\n========Select your Option========\n");
 				System.out.println("1. Check Complaints Assigned.");
 				System.out.println("2. Update complaint Status.");
+				System.out.println("3. View List of All the Complaints Attended.");
 				System.out.println("5. Logout/Exit.");
 
 				int engChoice = sc.nextInt();
@@ -186,6 +187,13 @@ public class UiMain {
 					EngineerUpdateComplaintStatus engineerUpdateComplaint = new EngineerUpdateComplaintStatus();
 					engineerUpdateComplaint.EngineerComplaintStatusUpdate(engIdLoggedIn);
 					System.out.println("==============================================");
+					
+				}else if (engChoice==3) {
+					System.out.println("All complaints Attended by Engineer.");
+					System.out.println("================================================");
+					EngineerCheckComplaintsAttended engTotalAttended = new EngineerCheckComplaintsAttended();
+					engTotalAttended.CheckComplaintsAttended(engIdLoggedIn);
+					System.out.println("=================================================");
 					
 				} else if (engChoice == 5) {
 					main(args);

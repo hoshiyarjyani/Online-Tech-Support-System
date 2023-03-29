@@ -6,6 +6,7 @@ import com.dto.Complaints;
 import com.dto.Engineer;
 import com.exception.ComplaintException;
 import com.exception.EngineerException;
+import com.exception.NoRecordFoundException;
 
 public interface EngineerDAO {
 
@@ -15,6 +16,8 @@ public interface EngineerDAO {
 
 	public String UpdateComplaintStatusByEngineer(int complaintId, String newStatus, int engID)
 			throws ComplaintException, ClassNotFoundException;
+
+	public List<Complaints> CheckComplaintsAttendedByEngineer(int engId) throws ComplaintException, ClassNotFoundException, NoRecordFoundException;
 
 
 }

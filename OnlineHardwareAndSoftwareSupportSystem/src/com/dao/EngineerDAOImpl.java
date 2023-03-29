@@ -13,6 +13,7 @@ import com.dto.Complaints;
 import com.dto.Engineer;
 import com.exception.ComplaintException;
 import com.exception.EngineerException;
+import com.exception.NoRecordFoundException;
 
 public class EngineerDAOImpl implements EngineerDAO {
 
@@ -135,5 +136,46 @@ public class EngineerDAOImpl implements EngineerDAO {
 
 		return result;
 	}
-
+	@Override
+	public List<Complaints> CheckComplaintsAttendedByEngineer(int engId) throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
+		List<Complaints> list = new ArrayList<>();
+		
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM complaints WHERE engId = ?");
+			
+			ps.setInt(1, engId);
+			
+			ResultSet rs = ps.executeQuery();
+			if (DBUtils.checkResultSet(rs)) {
+				throw new NoRecordFoundException("No Complaints Found");
+			}
+			while(rs.next()) {
+				Complaints complaint = new Complaints();
+				
+				complaint.setComplaintId(rs.getInt("complaintId"));
+				complaint.setEmpId(rs.getInt("empId"));
+				complaint.setComplaintType(rs.getString("complaintType"));
+				complaint.setEngId(rs.getInt("engId"));
+				complaint.setStatus(rs.getString("status"));
+				complaint.setDateRaised(rs.getDate("dateRaised"));
+				complaint.setDateResolved(rs.getDate("dateResolved"));
+				
+				list.add(complaint);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
 }
