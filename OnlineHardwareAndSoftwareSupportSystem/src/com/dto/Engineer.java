@@ -69,8 +69,8 @@ public class Engineer {
 
 	@Override
 	public String toString() {
-		return "Engineer [Engineer Id=" + engId + ", Name=" + name + ", UserName=" + userName + ", Password=" + password
-				+ ", Type=" + type + ", Location=" + location + "]";
+		return "EngineerId: " + engId + "  Name: " + name + "  UserName: " + userName + "  Password: " + password
+				+ "  Type: " + type + "  Location: " + location;
 	}
 	
 	
