@@ -87,8 +87,6 @@ public class UiMain {
 					EmployeeRegistration employeeRegister = new EmployeeRegistration();
 					employeeRegister.RegisterNewEmployee();
 					System.out.println("============================================");
-				} else if (hodChoice == 8) {
-					UiMain.main(args);
 				}else if (hodChoice == 9) {
 					HodDeleteDepartment delete = new HodDeleteDepartment();
 					delete.hodDeleteDepartment();
@@ -103,6 +101,8 @@ public class UiMain {
 					System.out.println("=================================");
 					checkDepartmentList.CheckDepartmentByHOD();
 					System.out.println("=================================");
+				} else if (hodChoice == 8) {
+					UiMain.main(args);
 				} else {
 					System.out.println("Invalid choice. Please enter a correct choice.");
 					System.out.println("====================================================");
