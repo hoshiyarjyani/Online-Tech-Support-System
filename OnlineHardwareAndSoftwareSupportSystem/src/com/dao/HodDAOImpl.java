@@ -12,6 +12,7 @@ import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.ComplaintException;
 import com.exception.DepartmentException;
+import com.exception.EmployeeException;
 import com.exception.EngineerException;
 import com.exception.HODException;
 import com.exception.NoRecordFoundException;
@@ -280,6 +281,38 @@ public class HodDAOImpl implements HodDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DepartmentException(e.getMessage());
+		} finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public String DeleteEmployeeByHodDAO(int employeeId) throws EmployeeException, ClassNotFoundException {
+		Connection con = null;
+		String result = "Employee Not Present in Record who's ID is " + employeeId;
+
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("DELETE FROM employee WHERE EmpId = ?");
+
+			ps.setInt(1, employeeId);
+
+			int x = ps.executeUpdate();
+
+			if (x > 0) {
+				result = "Employee who's ID is " + employeeId + " is Sucessfully Deleted from Database.";
+			} else {
+				throw new EmployeeException("Employee Who's ID " + employeeId + " is not Found in Records.");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new EmployeeException(e.getMessage());
 		} finally {
 			try {
 				DBUtils.closeConnection(con);

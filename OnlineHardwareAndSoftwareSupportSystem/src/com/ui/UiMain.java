@@ -4,11 +4,12 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
 import com.exception.ComplaintException;
+import com.exception.EmployeeException;
 import com.exception.NoRecordFoundException;
 
 public class UiMain {
 	public static void main(String[] args)
-			throws ClassNotFoundException, NoRecordFoundException, SQLIntegrityConstraintViolationException {
+			throws ClassNotFoundException, NoRecordFoundException, SQLIntegrityConstraintViolationException, EmployeeException {
 		System.out.println("Welcome to Online Hardware and Software Support System. ");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		System.out.println("========Select your Option========\n");
@@ -41,6 +42,7 @@ public class UiMain {
 				System.out.println("Enter 6 : Add Department In DataBase");
 				System.out.println("Enter 9 : Delete Department From DataBase");
 				System.out.println("Enter 7 : Register a New Employee");
+				System.out.println("Enter 10: Delete Employee From Database");
 				System.out.println("Enter 8 : Logout");
 
 				int hodChoice = sc.nextInt();
@@ -89,6 +91,10 @@ public class UiMain {
 				}else if (hodChoice == 9) {
 					HodDeleteDepartment delete = new HodDeleteDepartment();
 					delete.hodDeleteDepartment();
+					System.out.println("====================================");
+				}else if (hodChoice == 10) {
+					HodDeleteEmployee delete = new HodDeleteEmployee();
+					delete.HODDeleteEmployee();
 					System.out.println("====================================");
 				} else {
 					System.out.println("Invalid choice. Please enter a correct choice.");
