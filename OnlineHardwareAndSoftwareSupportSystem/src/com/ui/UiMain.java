@@ -165,6 +165,7 @@ public class UiMain {
 			while (true) {
 				System.out.println("\n========Select your Option========\n");
 				System.out.println("1. Check Complaints Assigned.");
+				System.out.println("2. Update complaint Status.");
 				System.out.println("5. Logout/Exit.");
 
 				int engChoice = sc.nextInt();
@@ -179,6 +180,13 @@ public class UiMain {
 						System.out.println(e.getMessage());
 					}
 
+				}else if(engChoice==2) {
+					System.out.println("Update Complaint Status");
+					System.out.println("==============================================");
+					EngineerUpdateComplaintStatus engineerUpdateComplaint = new EngineerUpdateComplaintStatus();
+					engineerUpdateComplaint.EngineerComplaintStatusUpdate(engIdLoggedIn);
+					System.out.println("==============================================");
+					
 				} else if (engChoice == 5) {
 					main(args);
 				} else {

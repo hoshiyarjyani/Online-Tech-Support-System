@@ -13,4 +13,8 @@ public interface EngineerDAO {
 
 	public List<Complaints> CheckAssignedComplaintsToEngineer(int engId) throws ComplaintException;
 
+	public String UpdateComplaintStatusByEngineer(int complaintId, String newStatus, int engID)
+			throws ComplaintException, ClassNotFoundException;
+
+
 }
