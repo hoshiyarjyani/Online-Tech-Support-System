@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.dto.Complaints;
 import com.dto.Engineer;
+import com.exception.ComplaintException;
 import com.exception.EngineerException;
 
 public class EngineerDAOImpl implements EngineerDAO{
@@ -45,4 +49,39 @@ public class EngineerDAOImpl implements EngineerDAO{
 		}
 		return engineer;
 	}
+	
+	@Override
+	public List<Complaints> CheckAssignedComplaintsToEngineer(int engId) throws ComplaintException {
+		List<Complaints> complaintsAssigned = new ArrayList<>();
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM complaints WHERE engId = ? AND status = 'Assigned'");
+			
+			ps.setInt(1, engId);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Complaints comp = new Complaints();
+				
+				comp.setComplaintId(rs.getInt("complaintId"));
+				comp.setEmpId(rs.getInt("empId"));
+				comp.setComplaintType(rs.getString("complaintType"));
+				comp.setEngId(rs.getInt("engId"));
+				comp.setStatus(rs.getString("status"));
+				comp.setDateRaised(rs.getDate("dateRaised"));
+				comp.setDateResolved(rs.getDate("dateResolved"));
+				
+				complaintsAssigned.add(comp);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return complaintsAssigned;
+	}
+
+	
 }

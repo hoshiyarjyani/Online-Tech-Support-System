@@ -3,10 +3,12 @@ package com.ui;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
 
+import com.exception.ComplaintException;
 import com.exception.NoRecordFoundException;
 
 public class UiMain {
-	public static void main(String[] args) throws ClassNotFoundException, NoRecordFoundException, SQLIntegrityConstraintViolationException {
+	public static void main(String[] args)
+			throws ClassNotFoundException, NoRecordFoundException, SQLIntegrityConstraintViolationException {
 		System.out.println("Welcome to Online Hardware and Software Support System. ");
 		System.out.println("+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+");
 		System.out.println("========Select your Option========\n");
@@ -92,64 +94,63 @@ public class UiMain {
 				System.out.println("1. Login Your Account if you are already Regitered Employee");
 				System.out.println("2. Register Yourself If you are a New Employee.");
 				System.out.println("3. Stop/Exit Application.");
-                
+
 				int EmpChoice = sc.nextInt();
-				if(EmpChoice==1){
+				if (EmpChoice == 1) {
 					EmployeeLogIn employeeLogin = new EmployeeLogIn();
 					int LoggedinEmpId = employeeLogin.loginEmployee();
-                    
-					while(true) {
+
+					while (true) {
 						System.out.println("\n========Select your Option========\n");
 						System.out.println("1. For Register a Complaint.");
 						System.out.println("2. Check Status of a Complaint.");
 						System.out.println("3. Check Complaint History by Employee.");
 						System.out.println("4. Change Your Password.");
 						System.out.println("5. Logout.");
-						
+
 						int option = sc.nextInt();
 						System.out.println("==========================================");
 						System.out.println("Employee");
 						System.out.println("===========================================");
-						if(option==1) {
+						if (option == 1) {
 							System.out.println("Raise Complaint");
 							System.out.println("=======================================");
 							EmployeeRaiseComplaint empComplaintTicket = new EmployeeRaiseComplaint();
 							empComplaintTicket.RaiseComplaintByEmployee(LoggedinEmpId);
 							System.out.println("========================================");
-						}else if(option==2) {
+						} else if (option == 2) {
 							EmployeeCheckComplaintStatus employeeCheckStatus = new EmployeeCheckComplaintStatus();
 							employeeCheckStatus.CheckComplaintStatusByEmployee();
 							System.out.println("==========================================");
-						}else if(option==3) {
+						} else if (option == 3) {
 							System.out.println("Complaint History");
 							System.out.println("============================================");
 							EmployeeComplaintHistory employeeHistory = new EmployeeComplaintHistory();
 							employeeHistory.CheckComplaintHistoryOfEmployee(LoggedinEmpId);
 							System.out.println("=============================================");
-						}else if(option==4) {
+						} else if (option == 4) {
 							System.out.println("Change Password.");
 							System.out.println("=============================================");
 							EmployeeChangePassword employeePasswordChange = new EmployeeChangePassword();
 							employeePasswordChange.EmployeeChangePasswordUI();
 							System.out.println("=============================================");
-							
-						}else if(option==5) {
+
+						} else if (option == 5) {
 							main(args);
-						}else {
+						} else {
 							System.out.println("Oops! Invalid Option Try Again");
 						}
 					}
-					
-				}			
-				else if(EmpChoice==2) {
+
+				} else if (EmpChoice == 2) {
 					EmployeeRegistration employeeRegister = new EmployeeRegistration();
 					employeeRegister.RegisterNewEmployee();
 					System.out.println("============================================");
-				}else if(EmpChoice==3){
+				} else if (EmpChoice == 3) {
 					System.out.println("*****************************************");
 					System.out.println("Thank you.");
 					System.exit(0);
-				}else {
+				} else {
 					System.out.println("Invalid Selection. Please Try Again.");
 				}
 			}
@@ -158,11 +159,31 @@ public class UiMain {
 			System.out.println("==================================================");
 			EngineerLogIn engineerLogIn = new EngineerLogIn();
 			int engIdLoggedIn = engineerLogIn.engineerLogin();
-			System.out.println(engIdLoggedIn);
-			System.out.println("=================================================");
+
+			System.out.println("==================================================");
 
 			while (true) {
+				System.out.println("\n========Select your Option========\n");
+				System.out.println("1. Check Complaints Assigned.");
+				System.out.println("5. Logout/Exit.");
 
+				int engChoice = sc.nextInt();
+				if (engChoice == 1) {
+					EngineerCheckComplaintsAssigned engineerComplaintAssign = new EngineerCheckComplaintsAssigned();
+					System.out.println("Complaints Assigned.");
+					System.out.println("==============================================");
+					try {
+						engineerComplaintAssign.checkComplaintsAssigned(engIdLoggedIn);
+						System.out.println("==========================================");
+					} catch (ComplaintException e) {
+						System.out.println(e.getMessage());
+					}
+
+				} else if (engChoice == 5) {
+					main(args);
+				} else {
+					System.out.println("Invalid Selection. Please Try Again.");
+				}
 			}
 
 		case 4:
