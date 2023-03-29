@@ -11,6 +11,7 @@ import com.dto.Complaints;
 import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.ComplaintException;
+import com.exception.DepartmentException;
 import com.exception.EngineerException;
 import com.exception.HODException;
 import com.exception.NoRecordFoundException;
@@ -224,4 +225,35 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 	
+	
+	@Override
+	public String RegisterDepartment(String dname, String location)throws ClassNotFoundException, DepartmentException {
+		String result = "";
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("INSERT INTO department (dname,location) values(?,?)");
+
+			ps.setString(1, dname);
+			ps.setString(2, location);
+
+			int x = ps.executeUpdate();
+			if (x > 0) {
+				result = "Department Registered Sucessfully. The Name Of Department is "+dname;
+			} else {
+				throw new DepartmentException("Invalid Entries. Please Try Again Later.");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DepartmentException(e.getMessage());
+		} finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

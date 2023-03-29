@@ -75,6 +75,10 @@ public class UiMain {
 					HODAssignComplaintToEngineer assignComplain = new HODAssignComplaintToEngineer();
 					assignComplain.AssignComplaintToEngineer();
 					System.out.println("=====================================");
+				}else if (hodChoice == 6) {
+					HODAddNewDepartment addDepartment = new HODAddNewDepartment();
+					addDepartment.HodRegisterDepartment();
+					System.out.println("=====================================");
 				} else if (hodChoice == 7) {
 					EmployeeRegistration employeeRegister = new EmployeeRegistration();
 					employeeRegister.RegisterNewEmployee();

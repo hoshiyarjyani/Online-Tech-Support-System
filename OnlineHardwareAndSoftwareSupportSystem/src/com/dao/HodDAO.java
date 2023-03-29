@@ -6,6 +6,7 @@ import com.dto.Complaints;
 import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.ComplaintException;
+import com.exception.DepartmentException;
 import com.exception.EngineerException;
 import com.exception.HODException;
 import com.exception.NoRecordFoundException;
@@ -18,4 +19,5 @@ public interface HodDAO {
 	public String DeleteEngineerByHodDAO(int engId) throws EngineerException, ClassNotFoundException;
 	public List<Complaints> CheckComplaintsByHodDAO() throws ComplaintException, ClassNotFoundException, NoRecordFoundException;
 	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId) throws EngineerException, ClassNotFoundException;
+	public String RegisterDepartment(String dname, String location) throws ClassNotFoundException, DepartmentException;
 }
