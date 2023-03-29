@@ -78,15 +78,17 @@ mysql> desc Department;
 +----------+-------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
 
-
-mysql> create table Employee (
-    -> EmpId int primary key auto_increment,
-    -> deptid int,
-    -> FOREIGN KEY(deptId) references Department(deptId),
-    -> name varchar(30) not null,
-    -> username varchar(30) not null,
-    -> password varchar(30) not null
+mysql> CREATE TABLE Employee (
+    -> EmpId INT PRIMARY KEY AUTO_INCREMENT,
+    -> deptid INT,
+    -> name VARCHAR(30) NOT NULL,
+    -> username VARCHAR(30) NOT NULL,
+    -> password VARCHAR(30) NOT NULL,
+    -> FOREIGN KEY (deptid) REFERENCES Department(deptid)
+    -> ON DELETE CASCADE
+    -> ON UPDATE CASCADE
     -> );
+
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> desc Employee;
