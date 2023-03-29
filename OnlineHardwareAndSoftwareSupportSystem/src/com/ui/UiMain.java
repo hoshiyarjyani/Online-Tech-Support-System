@@ -34,9 +34,13 @@ public class UiMain {
 				System.out.println("Enter 1 : Register a new Engineer.");
 				System.out.println("Enter 2 : See the list of all Engineers.");
 				System.out.println("Enter 3 : Delete any Engineer.");
+				
 				System.out.println("Enter 4 : View all Raised Complaints");
 				System.out.println("Enter 5 : Assign a Complaint To an Engineer.");
-				System.out.println("Enter 6 : Logout");
+				
+				System.out.println("Enter 6 : Add Department In DataBase");
+				System.out.println("Enter 7 : Register a New Employee");
+				System.out.println("Enter 8 : Logout");
 
 				int hodChoice = sc.nextInt();
 				System.out.println("===================================");
@@ -67,22 +71,19 @@ public class UiMain {
 					System.out.println("=====================================");
 					checkComplaints.CheckAllComplaintsByHOD();
 					System.out.println("=====================================");
-				}
-
-				else if (hodChoice == 5) {
+				} else if (hodChoice == 5) {
 					HODAssignComplaintToEngineer assignComplain = new HODAssignComplaintToEngineer();
 					assignComplain.AssignComplaintToEngineer();
 					System.out.println("=====================================");
-				}
-
-				else if (hodChoice == 6) {
+				} else if (hodChoice == 7) {
+					EmployeeRegistration employeeRegister = new EmployeeRegistration();
+					employeeRegister.RegisterNewEmployee();
+					System.out.println("============================================");
+				} else if (hodChoice == 8) {
 					UiMain.main(args);
-				}
-
-				else {
+				} else {
 					System.out.println("Invalid choice. Please enter a correct choice.");
 					System.out.println("====================================================");
-
 				}
 			}
 
@@ -91,9 +92,8 @@ public class UiMain {
 				System.out.println("Employee Section");
 				System.out.println("================================\n");
 				System.out.println("========Select your Option========\n");
-				System.out.println("1. Login Your Account if you are already Regitered Employee");
-				System.out.println("2. Register Yourself If you are a New Employee.");
-				System.out.println("3. Stop/Exit Application.");
+				System.out.println("1. Login Your Employee Account");
+				System.out.println("2. Stop/Exit Application.");
 
 				int EmpChoice = sc.nextInt();
 				if (EmpChoice == 1) {
@@ -143,10 +143,6 @@ public class UiMain {
 					}
 
 				} else if (EmpChoice == 2) {
-					EmployeeRegistration employeeRegister = new EmployeeRegistration();
-					employeeRegister.RegisterNewEmployee();
-					System.out.println("============================================");
-				} else if (EmpChoice == 3) {
 					System.out.println("*****************************************");
 					System.out.println("Thank you.");
 					System.exit(0);
@@ -182,27 +178,27 @@ public class UiMain {
 						System.out.println(e.getMessage());
 					}
 
-				}else if(engChoice==2) {
+				} else if (engChoice == 2) {
 					System.out.println("Update Complaint Status");
 					System.out.println("==============================================");
 					EngineerUpdateComplaintStatus engineerUpdateComplaint = new EngineerUpdateComplaintStatus();
 					engineerUpdateComplaint.EngineerComplaintStatusUpdate(engIdLoggedIn);
 					System.out.println("==============================================");
-					
-				}else if (engChoice==3) {
+
+				} else if (engChoice == 3) {
 					System.out.println("All complaints Attended by Engineer.");
 					System.out.println("================================================");
 					EngineerCheckComplaintsAttended engTotalAttended = new EngineerCheckComplaintsAttended();
 					engTotalAttended.CheckComplaintsAttended(engIdLoggedIn);
 					System.out.println("=================================================");
-					
-				}else if(engChoice==4) {
+
+				} else if (engChoice == 4) {
 					System.out.println("Change Password.");
 					System.out.println("=================================================");
 					EngineerChangePassword engineerChangePassword = new EngineerChangePassword();
 					engineerChangePassword.EngineerPasswordChange();
 					System.out.println("==================================================");
-					
+
 				} else if (engChoice == 5) {
 					main(args);
 				} else {
