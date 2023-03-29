@@ -3,6 +3,7 @@ package com.dao;
 import java.util.List;
 
 import com.dto.Complaints;
+import com.dto.Department;
 import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.ComplaintException;
@@ -34,4 +35,6 @@ public interface HodDAO {
 	public String DeleteDepartmentByHOD(String dname) throws DepartmentException, ClassNotFoundException;
 
 	public String DeleteEmployeeByHodDAO(int employeeId) throws EmployeeException, ClassNotFoundException;
+
+	public List<Department> CheckDepartmentByHodDAO() throws ClassNotFoundException, NoRecordFoundException;
 }

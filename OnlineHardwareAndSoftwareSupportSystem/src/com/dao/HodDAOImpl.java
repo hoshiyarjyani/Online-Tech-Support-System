@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dto.Complaints;
+import com.dto.Department;
 import com.dto.Engineer;
 import com.dto.HOD;
 import com.exception.ComplaintException;
@@ -160,22 +161,22 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
-	
 	@Override
-	public List<Complaints> CheckComplaintsByHodDAO() throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
+	public List<Complaints> CheckComplaintsByHodDAO()
+			throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
 		List<Complaints> list = new ArrayList<>();
 		Connection con = null;
-		try{
+		try {
 			con = DBUtils.getConnectionToDatabase();
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM complaints WHERE status = 'Raised'");
-			
+
 			ResultSet rs = ps.executeQuery();
 			if (DBUtils.checkResultSet(rs)) {
 				throw new NoRecordFoundException("No Complaint found");
 			}
-			while(rs.next()) {
+			while (rs.next()) {
 				Complaints complaint = new Complaints();
-				
+
 				complaint.setComplaintId(rs.getInt("complaintId"));
 				complaint.setEmpId(rs.getInt("empId"));
 				complaint.setComplaintType(rs.getString("complaintType"));
@@ -183,52 +184,53 @@ public class HodDAOImpl implements HodDAO {
 				complaint.setDateRaised(rs.getDate("dateRaised"));
 				complaint.setDateResolved(rs.getDate("dateResolved"));
 				complaint.setStatus(rs.getString("status"));
-				
+
 				list.add(complaint);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				DBUtils.closeConnection(con);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return list;
 	}
-	
+
 	@Override
-	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId) throws EngineerException, ClassNotFoundException {
+	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId)
+			throws EngineerException, ClassNotFoundException {
 		String result = "Complaint-Id Not Found in Database. Please Enter a Valid Complaint-Id.";
 		Connection con = null;
-		try{
+		try {
 			con = DBUtils.getConnectionToDatabase();
-			PreparedStatement ps = con.prepareStatement("UPDATE complaints SET engId = ?, status = 'Assigned' where complaintId = ?");
-			
+			PreparedStatement ps = con
+					.prepareStatement("UPDATE complaints SET engId = ?, status = 'Assigned' where complaintId = ?");
+
 			ps.setInt(1, engineerId);
 			ps.setInt(2, complaintId);
-			
+
 			int count = ps.executeUpdate();
-			if(count>0) {
-				result = "Complaint with ID " + complaintId +" Assigned to Engineer who's ID is " + engineerId;
-			}else {
+			if (count > 0) {
+				result = "Complaint with ID " + complaintId + " Assigned to Engineer who's ID is " + engineerId;
+			} else {
 				throw new EngineerException("Engineer or Complaint Not Found In Records.");
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new EngineerException(e.getMessage());
 		}
-		
+
 		return result;
 	}
-	
-	
+
 	@Override
-	public String RegisterDepartment(String dname, String location)throws ClassNotFoundException, DepartmentException {
+	public String RegisterDepartment(String dname, String location) throws ClassNotFoundException, DepartmentException {
 		String result = "";
 		Connection con = null;
 		try {
@@ -240,7 +242,7 @@ public class HodDAOImpl implements HodDAO {
 
 			int x = ps.executeUpdate();
 			if (x > 0) {
-				result = "Department Registered Sucessfully. The Name Of Department is "+dname;
+				result = "Department Registered Sucessfully. The Name Of Department is " + dname;
 			} else {
 				throw new DepartmentException("Invalid Entries. Please Try Again Later.");
 			}
@@ -257,8 +259,7 @@ public class HodDAOImpl implements HodDAO {
 		}
 		return result;
 	}
-	
-	
+
 	@Override
 	public String DeleteDepartmentByHOD(String dname) throws DepartmentException, ClassNotFoundException {
 		Connection con = null;
@@ -290,7 +291,7 @@ public class HodDAOImpl implements HodDAO {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public String DeleteEmployeeByHodDAO(int employeeId) throws EmployeeException, ClassNotFoundException {
 		Connection con = null;
@@ -321,5 +322,40 @@ public class HodDAOImpl implements HodDAO {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public List<Department> CheckDepartmentByHodDAO() throws ClassNotFoundException, NoRecordFoundException {
+		List<Department> list = new ArrayList<>();
+		Connection con = null;
+		try {
+			con = DBUtils.getConnectionToDatabase();
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM department");
+
+			ResultSet rs = ps.executeQuery();
+			if (DBUtils.checkResultSet(rs)) {
+				throw new NoRecordFoundException("No Department found");
+			}
+
+			while (rs.next()) {
+				Department department = new Department();
+				department.setDeptid(rs.getInt("deptid"));
+				department.setDname(rs.getString("dname"));
+				department.setLocation(rs.getString("location"));
+
+				list.add(department);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DBUtils.closeConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
 	}
 }
