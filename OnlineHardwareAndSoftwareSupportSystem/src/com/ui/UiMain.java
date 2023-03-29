@@ -135,11 +135,12 @@ public class UiMain {
 							
 						}else if(option==5) {
 							main(args);
+						}else {
+							System.out.println("Oops! Invalid Option Try Again");
 						}
 					}
 					
-				}
-				
+				}			
 				else if(EmpChoice==2) {
 					EmployeeRegistration employeeRegister = new EmployeeRegistration();
 					employeeRegister.RegisterNewEmployee();
@@ -155,7 +156,9 @@ public class UiMain {
 		case 3:
 			System.out.println("System Engineer");
 			System.out.println("==================================================");
-
+			EngineerLogIn engineerLogIn = new EngineerLogIn();
+			int engIdLoggedIn = engineerLogIn.engineerLogin();
+			System.out.println(engIdLoggedIn);
 			System.out.println("=================================================");
 
 			while (true) {
