@@ -144,6 +144,7 @@ public class EngineerDAOImpl implements EngineerDAO {
 		List<Complaints> list = new ArrayList<>();
 
 		Connection con = null;
+	
 		try {
 			con = DBUtils.getConnectionToDatabase();
 
@@ -167,7 +168,9 @@ public class EngineerDAOImpl implements EngineerDAO {
 				complaint.setDateResolved(rs.getDate("dateResolved"));
 
 				list.add(complaint);
+				
 			}
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

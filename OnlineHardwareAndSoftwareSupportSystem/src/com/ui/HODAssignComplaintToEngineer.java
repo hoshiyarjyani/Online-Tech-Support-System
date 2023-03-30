@@ -9,8 +9,10 @@ import com.exception.EngineerException;
 public class HODAssignComplaintToEngineer {
 	public void AssignComplaintToEngineer() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Assign a Complaint To an Engineer");
-		System.out.println("========================================");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		System.out.println("|                               Assign a Complaint To an Engineer                                      |");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		
 		System.out.println("Enter Complaint-ID that you wants to Assigned.");
 		int complaintId = sc.nextInt();
 		System.out.println("Enter Engineer-ID to Assign the Complaint.");

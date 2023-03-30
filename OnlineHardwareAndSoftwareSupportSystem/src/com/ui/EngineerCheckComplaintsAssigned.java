@@ -14,12 +14,14 @@ public class EngineerCheckComplaintsAssigned {
 		try {
 			List<Complaints> complaintsAssigned = engineerDao.CheckAssignedComplaintsToEngineer(engId);
 			if (complaintsAssigned.isEmpty()) {
-				System.out.println("No New Complaints Assigned.");
+	
+				System.out.println("                                      No New Complaints Assigned                                        ");
 			} else {
 				complaintsAssigned.forEach(x -> System.out.println(x));
 			}
 		} catch (ComplaintException e) {
-			throw new ComplaintException("No Complaints Assigned.");
+			  throw new ComplaintException("No Complaints Assigned.");
+  
 		}
 
 	}

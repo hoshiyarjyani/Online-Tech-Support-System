@@ -19,14 +19,19 @@ public class EmployeeRaiseComplaint {
 		}else if(option==2) {
 			complaintType ="Software";
 		}else {
-			System.out.println("Oops! Invalid Selection. Please Try Again.");
-			System.out.println("==================================");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			System.out.println("|                           Oops! Invalid Selection. Please Try Again                                  |");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
 			RaiseComplaintByEmployee(empId);
 		}
 		EmployeeDAO empDao = new EmployeeDAOImpl();
 		try {
 			int complaintId = empDao.RaiseComplaintByTheEmployee(empId, complaintType);
-			System.out.println("We kindly ask that you keep this number handy for checking the status of your complaint.");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			System.out.println("|        Please Save This number for checking the status of your complaint in future                   |");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			System.out.println("Your Complaint Number is "+ complaintId);
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
 		} catch (ComplaintException e) {
 			System.out.println(e.getMessage());
 		}
