@@ -5,14 +5,14 @@ Online Hardware and Software Support System -  (The system will be available on 
 
 Here are some Information of my project:
 
-![About Project](images/Intro1.png)
+![About Project](Image/Intro1.png)
 
-![Functionality](images/Intro2.png)
+![Functionality](Image/Intro2.png)
 
-![HOD Functionality](images/HODFunctionlity.png)
+![HOD Functionality](Image/HODFunctionlity.png)
 
-![Employee Functionality](images/EmployeeFunctionlity.png)
+![Employee Functionality](Image/EmployeeFunctionlity.png)
 
-![Engineer Functionality](images/EngineerFunctionlity.png)
+![Engineer Functionality](Image/EngineerFunctionlity.png)
 
-![DataBase Structure](images/TableStructure.png)
+![DataBase Structure](Image/TableStructure.png)
