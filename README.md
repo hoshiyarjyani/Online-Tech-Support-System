@@ -5,7 +5,7 @@ Online Hardware and Software Support System -  (The system will be available on 
 
 Here are some Information of my project:
 
-![About Project](Image/Intro1.png)
+![About Project](OnlineHardwareAndSoftwareSupportSystem/Image/Intro1.png)
 
 ![Functionality](Image/Intro2.png)
 
