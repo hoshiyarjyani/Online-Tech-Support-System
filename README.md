@@ -12,24 +12,24 @@ Users:
 2. Engineer
 3. Employee
 
-Roles for the HOD:
+Roles for the HOD:<br>
 
-⦁ Login into the system
-⦁ Register a new Engineer with a username(email) and password and the category (Hardware/software)
-⦁ Can see List of all the Registered Engineers.
-⦁ Can Delete any Engineers from the system
-⦁ Can able to see all the raised problem.
-⦁ Can assign any problem to any Engineer.
+⦁ Login into the system<br>
+⦁ Register a new Engineer with a username(email) and password and the category (Hardware/software)<br>
+⦁ Can see List of all the Registered Engineers.<br>
+⦁ Can Delete any Engineers from the system.<br>
+⦁ Can able to see all the raised problem.<br>
+⦁ Can assign any problem to any Engineer.<br>
 
-Roles of Engineer:
+Roles of Engineer:<br>
 
-⦁ Each engineer has their own account by which they can login.(credentials given by the HOD)
-⦁ Engineer can view the problem assigned to him by HOD.
-⦁ Engineer can update the status of the problem addressed by him . i. e. whether it solved or anything.
-⦁ They can see list of all the problems attended by him/her.
-⦁ Engineer can change his password.
+⦁ Each engineer has their own account by which they can login.(credentials given by the HOD)<br>
+⦁ Engineer can view the problem assigned to him by HOD.<br>
+⦁ Engineer can update the status of the problem addressed by him . i. e. whether it solved or anything.<br>
+⦁ They can see list of all the problems attended by him/her.<br>
+⦁ Engineer can change his password.<br>
 
-Roles of Employee:
+Roles of Employee:<br>
 
 ⦁ Employee can register himself with his username and password.
 ⦁ Each employee has their account in the system with which they can login
