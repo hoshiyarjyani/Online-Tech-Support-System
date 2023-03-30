@@ -10,18 +10,18 @@ import com.exception.NoRecordFoundException;
 
 public class EngineerCheckComplaintsAttended {
 
-	public void CheckComplaintsAttended(int engId) throws ClassNotFoundException, NoRecordFoundException {
+	public void CheckComplaintsAttended(int engId) throws ClassNotFoundException  {
 		EngineerDAO engineerDao = new EngineerDAOImpl();
 		
 		try {
 			List<Complaints> list = engineerDao.CheckComplaintsAttendedByEngineer(engId);
 			if(list.isEmpty()) {
-				System.out.println("No Complaints Attended By Engineer.");
+				System.out.println("                               No Complaints Attended By Engineer                                       ");
 			}else {
 				list.forEach(x -> System.out.println(x));
 			}
-		} catch (ComplaintException e) {
-			e.printStackTrace();
+		} catch (ComplaintException | NoRecordFoundException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }

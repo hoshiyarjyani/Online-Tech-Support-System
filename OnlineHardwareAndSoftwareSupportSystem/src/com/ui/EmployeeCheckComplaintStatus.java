@@ -12,9 +12,9 @@ public class EmployeeCheckComplaintStatus {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter your Complaint-ID to check status");
 		int compId = sc.nextInt();
-		System.out.println("=======================================");
-		System.out.println("Your Complaint Status");
-		
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		System.out.println("|                                        Your Complaint Status                                         |");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
 		EmployeeDAO dao = new EmployeeDAOImpl();
 		
 		try {

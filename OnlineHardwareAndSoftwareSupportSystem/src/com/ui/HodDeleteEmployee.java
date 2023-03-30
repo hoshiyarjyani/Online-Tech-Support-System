@@ -8,12 +8,15 @@ import com.exception.EmployeeException;
 
 public class HodDeleteEmployee {
 	public void HODDeleteEmployee() throws ClassNotFoundException, EmployeeException {
-		System.out.println("Delete Employee");
-		System.out.println("=======================================");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		System.out.println("|                                         Delete Employee                                              |");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the ID of Employee That You Wants to Delete From Database");
+		System.out.println("|                    Enter the ID of Employee That You Wants to Delete From Database                   |");
 		int empId = sc.nextInt();
-		System.out.println("=======================================");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		
 		HodDAO hoddao = new HodDAOImpl();
 		
 		try {

@@ -21,6 +21,8 @@ import com.exception.NoRecordFoundException;
 
 public class HodDAOImpl implements HodDAO {
 
+
+	//This method for Login validation of HOD
 	@Override
 	public HOD loginHodDAO(String username, String password) throws HODException, ClassNotFoundException {
 		Connection con = null;
@@ -54,6 +56,7 @@ public class HodDAOImpl implements HodDAO {
 		return hod;
 	}
 
+	//This method for Register new Engineer
 	@Override
 	public String registerEngineer(String name, String username, String password, String type, String location)
 			throws EngineerException, ClassNotFoundException {
@@ -72,7 +75,7 @@ public class HodDAOImpl implements HodDAO {
 
 			int x = ps.executeUpdate();
 			if (x > 0) {
-				res = "Engineer Registered Sucessfully";
+				res = "Engineer Registered Sucessfully. Username of Engineer is [ "+username+" ] and Password is [ "+password+" ].";;
 			} else {
 				throw new EngineerException("Invalid Entries. Please Try Again Later.");
 			}
@@ -91,6 +94,8 @@ public class HodDAOImpl implements HodDAO {
 		return res;
 	}
 
+
+	//This method for see the list of all Engineer
 	@Override
 	public List<Engineer> getEngineers() throws EngineerException, ClassNotFoundException, NoRecordFoundException {
 		List<Engineer> list = new ArrayList<>();
@@ -130,6 +135,8 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 
+
+	//This method for Delete the Engineer
 	@Override
 	public String DeleteEngineerByHodDAO(int engineerId) throws EngineerException, ClassNotFoundException {
 		Connection con = null;
@@ -162,6 +169,8 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
+
+	//This method for Check new Compalints by HOD
 	@Override
 	public List<Complaints> CheckComplaintsByHodDAO()
 			throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
@@ -202,6 +211,8 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 
+
+	//This method for Assign Complaint to Engineer by HOD
 	@Override
 	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId)
 			throws EngineerException, ClassNotFoundException {
@@ -230,6 +241,8 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
+
+	//This method for Add New Department
 	@Override
 	public String RegisterDepartment(String dname, String location) throws ClassNotFoundException, DepartmentException {
 		String result = "";
@@ -261,6 +274,7 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
+	//This method for Delete Department
 	@Override
 	public String DeleteDepartmentByHOD(String dname) throws DepartmentException, ClassNotFoundException {
 		Connection con = null;
@@ -293,6 +307,7 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
+	//This method for Delete Employee
 	@Override
 	public String DeleteEmployeeByHodDAO(int employeeId) throws EmployeeException, ClassNotFoundException {
 		Connection con = null;
@@ -325,6 +340,7 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
+	//This method for see the list of all Department
 	@Override
 	public List<Department> CheckDepartmentByHodDAO() throws ClassNotFoundException, NoRecordFoundException {
 		List<Department> list = new ArrayList<>();
@@ -360,6 +376,7 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 
+	//This method for see the list of all Employee
 	@Override
 	public List<Employee> CheckEmployeeByHodDAO() throws ClassNotFoundException, NoRecordFoundException {
 		List<Employee> list = new ArrayList<>();

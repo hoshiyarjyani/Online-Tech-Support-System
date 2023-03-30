@@ -16,20 +16,19 @@ public class EmployeeLogIn {
 			String username = sc.next();
 			System.out.println("Enter Password");
 			String password = sc.next();
-			System.out.println("==================================");
 			
 			EmployeeDAO employeeDao = new EmployeeDAOImpl();
 			
 			try {
 				Employee emp = employeeDao.LoginEmployee(username, password);
-				System.out.println("Welcome "+ emp.getName());
-				System.out.println("======================================");
+				System.out.println("+------------------------------------------------------------------------------------------------------+");
+				System.out.println("                                           Welcome "+ emp.getName());
+				System.out.println("+------------------------------------------------------------------------------------------------------+");
 				empId = emp.getEmpId();
 				
 			} catch (EmployeeException e) {
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
-				System.out.println("===========================================");
 				loginEmployee();
 			}
 			

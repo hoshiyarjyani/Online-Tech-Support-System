@@ -15,17 +15,14 @@ public class HODAddNewDepartment {
 		String dname = sc.next();
 		System.out.println("Enter Department City");
 		String city = sc.next();
-		System.out.println("==============================================");
 		
 		HodDAO dao = new HodDAOImpl();
 		
 		try {
 			result = dao.RegisterDepartment(dname,city);
 			System.out.println(result);
-			System.out.println("====================================");
 		} catch (DepartmentException e) {
 			System.out.println(e.getMessage());
-			System.out.println("=============================================");
 			HodRegisterDepartment();
 		}
 	}

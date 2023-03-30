@@ -9,7 +9,9 @@ import com.exception.ComplaintException;
 public class EngineerUpdateComplaintStatus {
 	public void EngineerComplaintStatusUpdate(int engID) throws ClassNotFoundException {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Update Your Status Of Compalint here by ComplaintID");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		System.out.println("|                          Update Your Status Of Compalint here by ComplaintID                         |");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
 		System.out.println("Enter Complaint-ID here.");
 		int complaintId = sc.nextInt();
 		System.out.println("1. Set Status of Complaint as 'In Progress'.");
@@ -35,7 +37,10 @@ public class EngineerUpdateComplaintStatus {
 				System.out.println(e.getMessage());
 			}
 		}else {
-			System.out.println("Invalid Selection. Please Try Again.");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			System.out.println("|                                Invalid Selection. Please Try Again                                   |");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			EngineerComplaintStatusUpdate(engID);
 		}
 	}
 }

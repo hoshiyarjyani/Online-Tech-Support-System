@@ -37,17 +37,14 @@ public class HodRegisterEngineerUI {
 		System.out.println("Enter Engineer's Location");
 		String location = sc.next();
 		
-		System.out.println("==============================================");
 		
 		HodDAO dao = new HodDAOImpl();
 		
 		try {
 			res = dao.registerEngineer(name, username, password, type, location);
 			System.out.println(res);
-			System.out.println("====================================");
-		} catch (EngineerException e) {
+			} catch (EngineerException e) {
 			System.out.println(e.getMessage());
-			System.out.println("=============================================");
 			hodRegisterEngineer();
 		}
 	}

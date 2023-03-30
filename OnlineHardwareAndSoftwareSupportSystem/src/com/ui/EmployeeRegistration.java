@@ -14,7 +14,7 @@ public class EmployeeRegistration {
 		
 		public void RegisterNewEmployee() throws SQLIntegrityConstraintViolationException {
 			System.out.println("Employee Registration");
-			System.out.println("=============================");
+			System.out.println("================================================================================================================");
 			
 			Scanner sc = new Scanner(System.in);
 			

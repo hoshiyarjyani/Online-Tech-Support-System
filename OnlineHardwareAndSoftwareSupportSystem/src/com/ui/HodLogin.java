@@ -15,19 +15,18 @@ public class HodLogin {
 		String username = sc.next();
 		System.out.println("Enter Password");
 		String password = sc.next();
-		System.out.println("==================================");
 		
 		HodDAO dao = new HodDAOImpl();
 		
 		try {
 			HOD hod = dao.loginHodDAO(username, password);
-			System.out.println("Welcome "+ hod.getName());
-			System.out.println("==================================");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			System.out.println("                                        Welcome "+ hod.getName());
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
 			
 		} catch (HODException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
-			System.out.println("======================================");
 			LoginHOD();
 		}
 	}

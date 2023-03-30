@@ -15,7 +15,9 @@ public class EngineerChangePassword {
 		String userName = sc.next();
 		System.out.println("Enter Your Old Password");
 		String oldPassword = sc.next();
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
 		System.out.println("Enter New Password to be set.\nNote- Password should have 8 to 20 Characters.\nNo Space,Include Atleast 1 Digit, 1 Uppercase, 1 Lowercase and a Special Character.");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
 		String newPassword = sc.next();
 		
 		String regex = "^(?=.*[0-9])"
@@ -37,7 +39,9 @@ public class EngineerChangePassword {
 				System.out.println(e.getMessage());
 			}
 		}else {
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
 			System.out.println("Oops! Try Again.\nEnter New Password to be set.\nNote- Password should have 8 to 20 Characters.\nNo Space,Include Atleast 1 Digit, 1 Uppercase, 1 Lowercase and a Special Character.");
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
 			EngineerPasswordChange();	
 		}
 	}

@@ -15,14 +15,15 @@ public class EngineerLogIn {
 		String username = sc.next();
 		System.out.println("Enter Password");
 		String password = sc.next();
-		System.out.println("===================================");
-
+		
 		EngineerDAO engineerDao = new EngineerDAOImpl();
 		int engineerId = 0;
 
 		try {
 			Engineer engineer = engineerDao.LogInEngineer(username, password);
-			System.out.println("Welcome " + engineer.getName());
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
+			System.out.println("                                           Welcome " + engineer.getName());
+			System.out.println("+------------------------------------------------------------------------------------------------------+");
 			engineerId = engineer.getEngId();
 		} catch (EngineerException e) {
 			System.out.println(e.getMessage());

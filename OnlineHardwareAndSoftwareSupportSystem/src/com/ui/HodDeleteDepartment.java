@@ -9,12 +9,15 @@ import com.exception.DepartmentException;
 
 public class HodDeleteDepartment {
 	public void hodDeleteDepartment() throws ClassNotFoundException {
-		System.out.println("Delete Department");
-		System.out.println("=======================================");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		System.out.println("|                                         Delete Department                                            |");
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
+		
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the Name of Department That You Wants to Delete From Database");
+		System.out.println("|                  Enter the Name of Department That You Wants to Delete From Database                 |");
+		
+		System.out.println("+------------------------------------------------------------------------------------------------------+");
 		String dname = sc.next();
-		System.out.println("=======================================");
 		HodDAO hoddao = new HodDAOImpl();
 		
 		try {
