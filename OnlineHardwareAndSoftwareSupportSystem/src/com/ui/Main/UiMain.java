@@ -40,10 +40,10 @@ public class UiMain {
 		System.out.println("+------------------------------------------------------------------------------------------------------+");
 		System.out.println("|                                       Select your Designation                                        |");
 		System.out.println("+------------------------------------------------------------------------------------------------------+");
-		System.out.println("|     1. HOD                                                                                           |");
-		System.out.println("|     2. Employee                                                                                      |");
-		System.out.println("|     3. Engineer                                                                                      |");
-		System.out.println("|     4. Stop Application                                                                              |");
+		System.out.println("| 1. HOD                                                                                               |");
+		System.out.println("| 2. Employee                                                                                          |");
+		System.out.println("| 3. Engineer                                                                                          |");
+		System.out.println("| 4. Stop Application                                                                                  |");
 		System.out.println("+------------------------------------------------------------------------------------------------------+\n");
 		Scanner sc = new Scanner(System.in);
 
@@ -61,21 +61,18 @@ public class UiMain {
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 				System.out.println("|                                       Select Your Option                                             |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
-				System.out.println("|     1. View all Raised Complaints                                                                    |");
-				System.out.println("|     2. Assign a Complaint To an Engineer                                                             |");
-				System.out.println("| (Engineer Section)                                                                                   |");
-				System.out.println("|     3. Register a new Engineer                                                                       |");
-				System.out.println("|     4. View Engineers List                                                                           |");
-				System.out.println("|     5. Delete Engineer From Database                                                                 |");
-				System.out.println("| (Department Section)                                                                                 |");
-				System.out.println("|     6. Add Department In DataBase                                                                    |");
-				System.out.println("|     7. View Department List                                                                          |");
-				System.out.println("|     8. Delete Department From DataBase                                                               |");			
-				System.out.println("| (Employee Section)                                                                                   |");
-				System.out.println("|     9. Register a New Employee                                                                       |");
-				System.out.println("|     10.View Employee List                                                                            |");
-				System.out.println("|     11.Delete Employee From Database                                                                 |");
-				System.out.println("|     12.Logout                                                                                        |");
+				System.out.println("| 1. View all Raised Complaints                                                                        |");
+				System.out.println("| 2. Assign a Complaint To an Engineer                                                                 |");
+				System.out.println("| 3. Register a new Engineer                                                                           |");
+				System.out.println("| 4. View Engineers List                                                                               |");
+				System.out.println("| 5. Delete Engineer From Database                                                                     |");
+				System.out.println("| 6. Add Department In DataBase                                                                        |");
+				System.out.println("| 7. View Department List                                                                              |");
+				System.out.println("| 8. Delete Department From DataBase                                                                   |");			
+				System.out.println("| 9. Register a New Employee                                                                           |");
+				System.out.println("| 10.View Employee List                                                                                |");
+				System.out.println("| 11.Delete Employee From Database                                                                     |");
+				System.out.println("| 12.Logout                                                                                            |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 
 				int hodChoice = sc.nextInt();
@@ -164,8 +161,8 @@ public class UiMain {
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 				System.out.println("|                                       Select Your Option                                             |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
-				System.out.println("|     1. Login Your Employee Account                                                                   |");
-				System.out.println("|     2. Go Back                                                                                       |");
+				System.out.println("| 1. Login Your Employee Account                                                                       |");
+				System.out.println("| 2. Go Back                                                                                           |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 				int EmpChoice = sc.nextInt();
 				if (EmpChoice == 1) {
@@ -176,11 +173,11 @@ public class UiMain {
 						System.out.println("+------------------------------------------------------------------------------------------------------+");
 						System.out.println("|                                         Select Your Option                                           |");
 						System.out.println("+------------------------------------------------------------------------------------------------------+");
-						System.out.println("|     1. For Register a Complaint                                                                      |");
-						System.out.println("|     2. Check Status of a Complaint                                                                   |");
-						System.out.println("|     3. Check Complaint History by Employee                                                           |");
-						System.out.println("|     4. Change Your Password                                                                          |");
-						System.out.println("|     5. Logout                                                                                       |");
+						System.out.println("| 1. For Register a Complaint                                                                          |");
+						System.out.println("| 2. Check Status of a Complaint                                                                       |");
+						System.out.println("| 3. Check Complaint History by Employee                                                               |");
+						System.out.println("| 4. Change Your Password                                                                              |");
+						System.out.println("| 5. Logout                                                                                            |");
 						System.out.println("+------------------------------------------------------------------------------------------------------+");
 					
 						int option = sc.nextInt();
@@ -240,11 +237,11 @@ public class UiMain {
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 				System.out.println("|                                          Select your Option                                          |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
-				System.out.println("|     1. Check Complaints Assigned                                                                     |");
-				System.out.println("|     2. Update complaint Status                                                                       |");
-				System.out.println("|     3. View List of All the Complaints Attended                                                      |");
-				System.out.println("|     4. Change Your Password                                                                          |");
-				System.out.println("|     5. LogOut                                                                                        |");
+				System.out.println("| 1. Check Complaints Assigned                                                                         |");
+				System.out.println("| 2. Update complaint Status                                                                           |");
+				System.out.println("| 3. View List of All the Complaints Attended                                                          |");
+				System.out.println("| 4. Change Your Password                                                                              |");
+				System.out.println("| 5. LogOut                                                                                            |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 				int engChoice = sc.nextInt();
 				if (engChoice == 1) {
