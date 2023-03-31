@@ -144,6 +144,7 @@ public class UiMain {
 				
 				}
 				else if (hodChoice == 12) {
+					System.out.println("Logout Sucessfull");
 					UiMain.main(args);
 				} else {
 					System.out.println("+------------------------------------------------------------------------------------------------------+");
