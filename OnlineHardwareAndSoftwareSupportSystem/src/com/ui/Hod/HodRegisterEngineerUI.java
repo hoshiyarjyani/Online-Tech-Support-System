@@ -1,10 +1,12 @@
 package com.ui.Hod;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.dao.HodDAO;
 import com.dao.HodDAOImpl;
 import com.exception.EngineerException;
+import com.ui.Main.UiMain;
 
 public class HodRegisterEngineerUI {
 	
@@ -21,7 +23,17 @@ public class HodRegisterEngineerUI {
 		
 		System.out.println("Press 1. for Hardware Engineer");
 		System.out.println("Press 2. for Software Engineer");
-		int typeChoice = sc.nextInt();
+		
+		int typeChoice=0;
+		try {
+			typeChoice = sc.nextInt();
+		   
+		} catch (InputMismatchException e) {
+		    System.out.println("Invalid input. Please enter a valid integer.");
+		    sc.nextLine(); 
+		    hodRegisterEngineer();
+		}
+
 		
 		String type = "";
 		

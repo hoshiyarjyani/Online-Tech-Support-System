@@ -1,5 +1,6 @@
 package com.ui.Hod;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.dao.HodDAO;
@@ -16,15 +17,22 @@ public class HodDeleteEngineer {
 		
 		System.out.println("|                     Enter the ID of Engineer That You Wants to Delete From Database                  |");
 		System.out.println("+------------------------------------------------------------------------------------------------------+");
-		
-		int engId = sc.nextInt();
-		HodDAO hoddao = new HodDAOImpl();
-		
 		try {
-			String res = hoddao.DeleteEngineerByHodDAO(engId);
-			System.out.println(res);
-		} catch (EngineerException e) {
-			System.out.println(e.getMessage());
+			int engId = sc.nextInt();
+			HodDAO hoddao = new HodDAOImpl();
+			
+			try {
+				String res = hoddao.DeleteEngineerByHodDAO(engId);
+				System.out.println(res);
+			} catch (EngineerException e) {
+				System.out.println(e.getMessage());
+			}
+		} catch (InputMismatchException e) {
+		    System.out.println("Invalid input. Please enter a valid integer.");
+		    sc.nextLine(); 
 		}
+
+		
+		
 	}
 }
