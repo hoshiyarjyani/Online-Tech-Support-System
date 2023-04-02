@@ -2,6 +2,7 @@ package com.ui.Employee;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +20,17 @@ public class EmployeeRegistration {
 			Scanner sc = new Scanner(System.in);
 			
 			System.out.println("Enter Department ID");
-			int deptId = sc.nextInt();
+		
+			int deptId =0;
+			try {
+			    deptId = sc.nextInt();
+			   
+			} catch (InputMismatchException e) {
+			    System.out.println("Invalid input. Please enter a valid integer.");
+			    sc.nextLine(); 
+			    RegisterNewEmployee();
+			}
+			
 			System.out.println("Enter Name Of Employee");
 			String name = sc.next();
 			System.out.println("Enter Username here");

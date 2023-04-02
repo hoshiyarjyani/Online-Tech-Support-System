@@ -1,6 +1,7 @@
 package com.ui.Main;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.exception.ComplaintException;
@@ -47,7 +48,15 @@ public class UiMain {
 		System.out.println("+------------------------------------------------------------------------------------------------------+\n");
 		Scanner sc = new Scanner(System.in);
 
-		int choice = sc.nextInt();
+		int choice=0;
+		try {
+			choice = sc.nextInt();
+		   
+		} catch (InputMismatchException e) {
+		    System.out.println("Invalid input. Please enter a valid integer.");
+		    sc.nextLine(); 
+		    UiMain.main(args);
+		}
 
 		switch (choice) {
 
@@ -75,8 +84,15 @@ public class UiMain {
 				System.out.println("| 12.Logout                                                                                            |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
 
-				int hodChoice = sc.nextInt();
-			
+				int hodChoice = 0;
+				try {
+					hodChoice = sc.nextInt();
+				   
+				} catch (InputMismatchException e) {
+				    System.out.println("Invalid input. Please enter a valid integer.");
+				    sc.nextLine(); 
+				}
+
 
 				
 				if (hodChoice == 1) {
@@ -165,7 +181,17 @@ public class UiMain {
 				System.out.println("| 1. Login Your Employee Account                                                                       |");
 				System.out.println("| 2. Go Back                                                                                           |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
-				int EmpChoice = sc.nextInt();
+			
+				int EmpChoice = 0;
+				try {
+					EmpChoice = sc.nextInt();
+				   
+				} catch (InputMismatchException e) {
+				    System.out.println("Invalid input. Please enter a valid integer.");
+				    sc.nextLine(); 
+				}
+
+				
 				if (EmpChoice == 1) {
 					EmployeeLogIn employeeLogin = new EmployeeLogIn();
 					int LoggedinEmpId = employeeLogin.loginEmployee();
@@ -181,7 +207,16 @@ public class UiMain {
 						System.out.println("| 5. Logout                                                                                            |");
 						System.out.println("+------------------------------------------------------------------------------------------------------+");
 					
-						int option = sc.nextInt();
+						int option = 0;
+						
+						try {
+						 option = sc.nextInt();
+						   
+						} catch (InputMismatchException e) {
+						    System.out.println("Invalid input. Please enter a valid integer.");
+						    sc.nextLine(); 
+						}
+						
 					if (option == 1) {
 							System.out.println("+------------------------------------------------------------------------------------------------------+");
 							System.out.println("|                                       Raise Complaint                                                |");
@@ -244,7 +279,15 @@ public class UiMain {
 				System.out.println("| 4. Change Your Password                                                                              |");
 				System.out.println("| 5. LogOut                                                                                            |");
 				System.out.println("+------------------------------------------------------------------------------------------------------+");
-				int engChoice = sc.nextInt();
+				int engChoice = 0;
+				try {
+				engChoice = sc.nextInt();
+				   
+				} catch (InputMismatchException e) {
+				    System.out.println("Invalid input. Please enter a valid integer.");
+				    sc.nextLine(); 
+				}
+				
 				if (engChoice == 1) {
 					EngineerCheckComplaintsAssigned engineerComplaintAssign = new EngineerCheckComplaintsAssigned();
 					System.out.println("+------------------------------------------------------------------------------------------------------+");
