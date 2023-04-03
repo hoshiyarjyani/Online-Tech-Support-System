@@ -1,3 +1,5 @@
+![About Project](OnlineHardwareAndSoftwareSupportSystem/Image/OnlineTechSupport.png)
+
 # Online Tech Support 
 This project was developed using Core Java programming language and uses MySQL as its database. JDBC connector was utilized to establish connectivity between the Java application and the MySQL database. This online tech support system was designed to provide 24x7 access to employees, engineers, the Head of the Department and the administration to quickly resolve technical issues related to hardware and software. The system was developed with a user-friendly interface, allowing registered users to easily access various features and functionalities according to their specific roles.
 
