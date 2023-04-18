@@ -52,6 +52,6 @@ Employees of the organization uses IT based hardware for their daily work. If by
 
 ![Engineer Functionality](OnlineHardwareAndSoftwareSupportSystem/Image/EngineerFunctionlity.png)
 
-![DataBase Structure](OnlineHardwareAndSoftwareSupportSystem/Image/FlowChart.png)
+![Flowchart Structure](OnlineHardwareAndSoftwareSupportSystem/Image/FlowChart.jpeg)
 
 ![DataBase Structure](OnlineHardwareAndSoftwareSupportSystem/Image/TableStructure.png)
