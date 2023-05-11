@@ -19,10 +19,39 @@ import com.exception.EngineerException;
 import com.exception.HODException;
 import com.exception.NoRecordFoundException;
 
+/**
+ * 
+ * The HodDAOImpl class provides the implementation for the HodDAO interface.
+ * It defines methods to interact with the database and perform CRUD operations
+ * on
+ * Department, Employee, Engineer, and Complaints entities.
+ * This class implements the following methods:
+ * 
+ * @see HodDAO#loginHodDAO(String, String)
+ * @see HodDAO#registerEngineer(String, String, String, String, String)
+ * @see HodDAO#getEngineers()
+ * @see HodDAO#DeleteEngineerByHodDAO(int)
+ * @see HodDAO#CheckComplaintsByHodDAO()
+ * @see HodDAO#AssignComplaintToEngineerByHOD(int, int)
+ * @see HodDAO#RegisterDepartment(String, String)
+ * @see HodDAO#DeleteDepartmentByHOD(String)
+ * @see HodDAO#DeleteEmployeeByHodDAO(int)
+ * @see HodDAO#CheckDepartmentByHodDAO()
+ * @see HodDAO#CheckEmployeeByHodDAO()
+ * @author HoshiyarJyani
+ */
 public class HodDAOImpl implements HodDAO {
 
-
-	//This method for Login validation of HOD
+	/**
+	 * Attempts to log in a Head of Department with the specified username and
+	 * password.
+	 * 
+	 * @param username The username of the Head of Department.
+	 * @param password The password of the Head of Department.
+	 * @return The HOD object if the login is successful.
+	 * @throws HODException           If there is an error with the HOD object.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 */
 	@Override
 	public HOD loginHodDAO(String username, String password) throws HODException, ClassNotFoundException {
 		Connection con = null;
@@ -56,7 +85,19 @@ public class HodDAOImpl implements HodDAO {
 		return hod;
 	}
 
-	//This method for Register new Engineer
+	/**
+	 * Registers a new engineer with the given name, username, password, type, and
+	 * location.
+	 * 
+	 * @param name     The name of the new engineer.
+	 * @param username The username of the new engineer.
+	 * @param password The password of the new engineer.
+	 * @param type     The type of the new engineer.
+	 * @param location The location of the new engineer.
+	 * @return A string indicating whether the registration was successful or not.
+	 * @throws EngineerException      If there is an error with the Engineer object.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 */
 	@Override
 	public String registerEngineer(String name, String username, String password, String type, String location)
 			throws EngineerException, ClassNotFoundException {
@@ -75,7 +116,9 @@ public class HodDAOImpl implements HodDAO {
 
 			int x = ps.executeUpdate();
 			if (x > 0) {
-				res = "Engineer Registered Sucessfully. Username of Engineer is [ "+username+" ] and Password is [ "+password+" ].";;
+				res = "Engineer Registered Sucessfully. Username of Engineer is [ " + username + " ] and Password is [ "
+						+ password + " ].";
+				;
 			} else {
 				throw new EngineerException("Invalid Entries. Please Try Again Later.");
 			}
@@ -94,8 +137,14 @@ public class HodDAOImpl implements HodDAO {
 		return res;
 	}
 
-
-	//This method for see the list of all Engineer
+	/**
+	 * Retrieves a list of all engineers.
+	 * 
+	 * @return A list of all Engineer objects.
+	 * @throws EngineerException      If there is an error with the Engineer object.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 * @throws NoRecordFoundException If there are no records found.
+	 */
 	@Override
 	public List<Engineer> getEngineers() throws EngineerException, ClassNotFoundException, NoRecordFoundException {
 		List<Engineer> list = new ArrayList<>();
@@ -135,8 +184,14 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 
-
-	//This method for Delete the Engineer
+	/**
+	 * Deletes an engineer with the given ID.
+	 * 
+	 * @param engId The ID of the engineer to delete.
+	 * @return A string indicating whether the deletion was successful or not.
+	 * @throws EngineerException      If there is an error with the Engineer object.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 */
 	@Override
 	public String DeleteEngineerByHodDAO(int engineerId) throws EngineerException, ClassNotFoundException {
 		Connection con = null;
@@ -169,8 +224,15 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
-
-	//This method for Check new Compalints by HOD
+	/**
+	 * Retrieves a list of all complaints.
+	 * 
+	 * @return A list of all Complaint objects.
+	 * @throws ComplaintException     If there is an error with the Complaint
+	 *                                object.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 * @throws NoRecordFoundException If there are no records found.
+	 */
 	@Override
 	public List<Complaints> CheckComplaintsByHodDAO()
 			throws ComplaintException, ClassNotFoundException, NoRecordFoundException {
@@ -211,8 +273,15 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 
-
-	//This method for Assign Complaint to Engineer by HOD
+	/**
+	 * Assigns a complaint with the given ID to an engineer with the given ID.
+	 * 
+	 * @param complaintId The ID of the complaint to assign.
+	 * @param engineerId  The ID of the engineer to assign the complaint to.
+	 * @return A string indicating whether the assignment was successful or not.
+	 * @throws EngineerException      If there is an error with the Engineer object.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 */
 	@Override
 	public String AssignComplaintToEngineerByHOD(int complaintId, int engineerId)
 			throws EngineerException, ClassNotFoundException {
@@ -241,8 +310,16 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
-
-	//This method for Add New Department
+	/**
+	 * Registers a new department with the given name and location.
+	 * 
+	 * @param dname    The name of the new department.
+	 * @param location The location of the new department.
+	 * @return A string indicating whether the registration was successful or not.
+	 * @throws ClassNotFoundException If the class cannot be found.
+	 * @throws DepartmentException    If there is an error with the Department
+	 *                                object.
+	 */
 	@Override
 	public String RegisterDepartment(String dname, String location) throws ClassNotFoundException, DepartmentException {
 		String result = "";
@@ -274,7 +351,15 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
-	//This method for Delete Department
+	/**
+	 * 
+	 * Deletes the department with the given name from the database.
+	 * 
+	 * @param dname The name of the department to be deleted.
+	 * @return A String indicating the status of the deletion operation.
+	 * @throws DepartmentException    if there is an error deleting the department.
+	 * @throws ClassNotFoundException if the Department class is not found.
+	 */
 	@Override
 	public String DeleteDepartmentByHOD(String dname) throws DepartmentException, ClassNotFoundException {
 		Connection con = null;
@@ -307,7 +392,15 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
-	//This method for Delete Employee
+	/**
+	 * 
+	 * Deletes the employee with the given ID from the database.
+	 * 
+	 * @param employeeId The ID of the employee to be deleted.
+	 * @return A String indicating the status of the deletion operation.
+	 * @throws EmployeeException      if there is an error deleting the employee.
+	 * @throws ClassNotFoundException if the Employee class is not found.
+	 */
 	@Override
 	public String DeleteEmployeeByHodDAO(int employeeId) throws EmployeeException, ClassNotFoundException {
 		Connection con = null;
@@ -340,7 +433,14 @@ public class HodDAOImpl implements HodDAO {
 		return result;
 	}
 
-	//This method for see the list of all Department
+	/**
+	 * 
+	 * Retrieves a list of all departments from the database.
+	 * 
+	 * @return A List of Department objects.
+	 * @throws ClassNotFoundException if the Department class is not found.
+	 * @throws NoRecordFoundException if there are no records found in the database.
+	 */
 	@Override
 	public List<Department> CheckDepartmentByHodDAO() throws ClassNotFoundException, NoRecordFoundException {
 		List<Department> list = new ArrayList<>();
@@ -376,7 +476,14 @@ public class HodDAOImpl implements HodDAO {
 		return list;
 	}
 
-	//This method for see the list of all Employee
+	/**
+	 * 
+	 * Retrieves a list of all employees from the database.
+	 * 
+	 * @return A List of Employee objects.
+	 * @throws ClassNotFoundException if the Employee class is not found.
+	 * @throws NoRecordFoundException if there are no records found in the database.
+	 */
 	@Override
 	public List<Employee> CheckEmployeeByHodDAO() throws ClassNotFoundException, NoRecordFoundException {
 		List<Employee> list = new ArrayList<>();

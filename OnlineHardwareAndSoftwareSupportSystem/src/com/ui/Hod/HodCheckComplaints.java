@@ -7,8 +7,28 @@ import com.dao.HodDAOImpl;
 import com.dto.Complaints;
 import com.exception.NoRecordFoundException;
 
+/**
+ * 
+ * This class represents the user interface for the HOD to check all the
+ * complaints that have been raised.
+ * It uses the HodDAOImpl class to get the list of complaints from the database
+ * and displays them on the console.
+ * If there are no complaints, it displays a message saying "No complaints have
+ * been raised."
+ * If an error occurs, it displays an error message on the console.
+ * 
+ * @author HoshiyarJyani
+ */
 public class HodCheckComplaints {
-
+	/**
+	 * This method retrieves the list of complaints from the database and displays
+	 * them on the console.
+	 * If there are no complaints, it displays a message saying "No complaints have
+	 * been raised."
+	 * If an error occurs, it displays an error message on the console.
+	 * 
+	 * @author HoshiyarJyani
+	 */
 	public void CheckAllComplaintsByHOD() {
 		try {
 			HodDAO dao = new HodDAOImpl();
