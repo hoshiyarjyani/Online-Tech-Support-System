@@ -2,8 +2,25 @@ package com.dto;
 
 import java.sql.Date;
 
+/**
+ * 
+ * This class represents an Engineer Complaint DTO (Data Transfer Object) which
+ * contains the data related to a complaint
+ * filed by an engineer. It contains various fields such as Engineer ID, name,
+ * username, password, complaint ID,
+ * complaint type, status, etc. which are required to maintain the complaint
+ * details of an engineer. The class provides
+ * getter and setter methods for all its fields to get and set the values of the
+ * fields. It also contains a toString()
+ * method to return a string representation of the object. This DTO is used to
+ * transfer the data related to engineer
+ * complaints between different layers of the application such as the service
+ * layer and the presentation layer.
+ * 
+ * @author HoshiyarJyani
+ */
 public class EngineerComplaintsDTO {
-	
+
 	private int engId;
 	private String name;
 	private String userName;
@@ -17,7 +34,8 @@ public class EngineerComplaintsDTO {
 	private Date dateRaised;
 	private String dateResolved;
 
-	public EngineerComplaintsDTO() {}
+	public EngineerComplaintsDTO() {
+	}
 
 	public EngineerComplaintsDTO(int engId, String name, String userName, String password, String type, String location,
 			int complaintId, int empId, String complaintType, String status, Date dateRaised, String dateResolved) {
@@ -135,9 +153,10 @@ public class EngineerComplaintsDTO {
 	@Override
 	public String toString() {
 		return "Engineer-ID: " + engId + "  Name: " + name + "  UserName: " + userName + "  Password: "
-				+ password + "  Type: " + type + "  Location: " + location + ", ComplaintId: " + complaintId + "  Employee-Id: "
+				+ password + "  Type: " + type + "  Location: " + location + ", ComplaintId: " + complaintId
+				+ "  Employee-Id: "
 				+ empId + "  ComplaintType: " + complaintType + "  Status: " + status + "  DateRaised: " + dateRaised
 				+ "  DateResolved: " + dateResolved;
 	}
-	
+
 }
